@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8F37DEF0-6E9F-48E6-A4CE-81D8F8E81DA7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sushi</RootNamespace>
+    <AssemblyName>Sushi</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BlockHelper\Block.cs" />
+    <Compile Include="BrandHelper\BrandComponent.cs" />
+    <Compile Include="BrandHelper\Brand.cs" />
+    <Compile Include="BrandHelper\BrandSkin.cs" />
+    <Compile Include="ButtonDropDownHelper\ButtonDropDownComponent.cs" />
+    <Compile Include="ButtonDropDownHelper\ButtonDropDown.cs" />
+    <Compile Include="ButtonGroupHelper\ButtonGroupComponent.cs" />
+    <Compile Include="ButtonGroupHelper\ButtonGroup.cs" />
+    <Compile Include="ButtonGroupHelper\ButtonGroupSkin.cs" />
+    <Compile Include="ButtonHelper\Button.cs" />
+    <Compile Include="ButtonHelper\ButtonSkin.cs" />
+    <Compile Include="DropDownHelper\DropDownComponent.cs" />
+    <Compile Include="DropDownHelper\DropDown.cs" />
+    <Compile Include="DropDownHelper\DropDownHeaderItemComponent.cs" />
+    <Compile Include="DropDownHelper\DropDownHeaderItem.cs" />
+    <Compile Include="DropDownHelper\DropDownSkin.cs" />
+    <Compile Include="Enums\Button.cs" />
+    <Compile Include="Enums\Field.cs" />
+    <Compile Include="Enums\Grid.cs" />
+    <Compile Include="Enums\HtmlAttributes.cs" />
+    <Compile Include="Enums\Icon.cs" />
+    <Compile Include="Enums\Layout.cs" />
+    <Compile Include="Enums\Menu.cs" />
+    <Compile Include="Enums\Nav.cs" />
+    <Compile Include="FieldHelper\Field.cs" />
+    <Compile Include="FieldHelper\FieldSkin.cs" />
+    <Compile Include="FieldHelper\SearchBoxSkin.cs" />
+    <Compile Include="FormHelper\FormComponent.cs" />
+    <Compile Include="FormHelper\Form.cs" />
+    <Compile Include="Gridhelper\Grid.cs" />
+    <Compile Include="Gridhelper\GridColumn.cs" />
+    <Compile Include="Gridhelper\GridComponent.cs" />
+    <Compile Include="Gridhelper\GridSkin.cs" />
+    <Compile Include="IconHelper\Icon.cs" />
+    <Compile Include="IconHelper\IconComponent.cs" />
+    <Compile Include="InputHelper\InputComponent.cs" />
+    <Compile Include="InputHelper\Input.cs" />
+    <Compile Include="ISushiComponentBuilder.cs" />
+    <Compile Include="ISushiContainer.cs" />
+    <Compile Include="ISushiSkin.cs" />
+    <Compile Include="ISushiSkinnable.cs" />
+    <Compile Include="LabelHelper\LabelComponent.cs" />
+    <Compile Include="LabelHelper\Label.cs" />
+    <Compile Include="LayoutHelper\Layout.cs" />
+    <Compile Include="MenuHelper\MenuComponent.cs" />
+    <Compile Include="MenuHelper\Menu.cs" />
+    <Compile Include="DropDownHelper\DropDownItemComponent.cs" />
+    <Compile Include="DropDownHelper\DropDownItem.cs" />
+    <Compile Include="LinkHelper\LinkComponent.cs" />
+    <Compile Include="LinkHelper\Link.cs" />
+    <Compile Include="FieldHelper\SearchBoxComponent.cs" />
+    <Compile Include="FieldHelper\SearchBox.cs" />
+    <Compile Include="NavigationHelper\NavigationDropDownItemComponent.cs" />
+    <Compile Include="NavigationHelper\NavigationDropDown.cs" />
+    <Compile Include="NavigationHelper\NavigationItem.cs" />
+    <Compile Include="NavigationHelper\NavigationComponent.cs" />
+    <Compile Include="NavigationHelper\Navigation.cs" />
+    <Compile Include="NavigationHelper\NavigationItemComponent.cs" />
+    <Compile Include="NavigationHelper\NavigationItemHeaderComponent.cs" />
+    <Compile Include="NavigationHelper\NavigationItemHeader.cs" />
+    <Compile Include="PanelHelper\Panel.cs" />
+    <Compile Include="Resolvers\GridResolver.cs" />
+    <Compile Include="Resolvers\HtmlResolver.cs" />
+    <Compile Include="Resolvers\IconResolver.cs" />
+    <Compile Include="Resolvers\LayoutResolver.cs" />
+    <Compile Include="Extensions\Sushi.cs" />
+    <Compile Include="Extensions\SushiFactory.cs" />
+    <Compile Include="Html\HtmlProperties.cs" />
+    <Compile Include="ISushiDisposable.cs" />
+    <Compile Include="ISushiComponent.cs" />
+    <Compile Include="ButtonHelper\ButtonComponent.cs" />
+    <Compile Include="FieldHelper\FieldComponent.cs" />
+    <Compile Include="LayoutHelper\LayoutComponent.cs" />
+    <Compile Include="PanelHelper\PanelComponent.cs" />
+    <Compile Include="Resolvers\MenuResolver.cs" />
+    <Compile Include="Resolvers\NavResolver.cs" />
+    <Compile Include="SeparatorHelper\Separator.cs" />
+    <Compile Include="SideBarHelper\SideBarComponent.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SideBarHelper\SideBar.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

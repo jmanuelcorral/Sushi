@@ -1,0 +1,12 @@
+E:\sushi\sushinew\sushi\sushi.htmlHelpers.Test\bin\Release\sushi.htmlHelpers.Test.dll
+E:\sushi\sushinew\sushi\sushi.htmlHelpers.Test\bin\Release\sushi.htmlHelpers.Test.pdb
+E:\sushi\sushinew\sushi\sushi.htmlHelpers.Test\bin\Release\Moq.dll
+E:\sushi\sushinew\sushi\sushi.htmlHelpers.Test\bin\Release\nunit.framework.dll
+E:\sushi\sushinew\sushi\sushi.htmlHelpers.Test\bin\Release\Sushi.dll
+E:\sushi\sushinew\sushi\sushi.htmlHelpers.Test\bin\Release\Sushi.pdb
+E:\sushi\sushinew\sushi\sushi.htmlHelpers.Test\bin\Release\Moq.pdb
+E:\sushi\sushinew\sushi\sushi.htmlHelpers.Test\bin\Release\Moq.xml
+E:\sushi\sushinew\sushi\sushi.htmlHelpers.Test\bin\Release\nunit.framework.xml
+E:\sushi\sushinew\sushi\sushi.htmlHelpers.Test\obj\Release\ResolveAssemblyReference.cache
+E:\sushi\sushinew\sushi\sushi.htmlHelpers.Test\obj\Release\sushi.htmlHelpers.Test.dll
+E:\sushi\sushinew\sushi\sushi.htmlHelpers.Test\obj\Release\sushi.htmlHelpers.Test.pdb

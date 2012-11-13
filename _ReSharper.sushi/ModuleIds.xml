@@ -1,0 +1,8 @@
+<Modules>
+  <Module PersistentId="62BE3330-9683-4ACF-A7D8-19258B82CDCD" ModuleId="sushi" />
+  <Module PersistentId="8F37DEF0-6E9F-48E6-A4CE-81D8F8E81DA7" ModuleId="htmlHelpers" />
+  <Module PersistentId="577776C5-D74C-415C-9BA1-FCAD139C245B" ModuleId="sushi.web.Tests" />
+  <Module PersistentId="5D938D01-B35D-4FF0-B204-A51DE99E5A0B" ModuleId="Samples" />
+  <Module PersistentId="E4B70740-EED8-4F6A-84A2-13EFB16BE048" ModuleId="sushi.htmlHelpers.Test" />
+  <Module PersistentId="F5254BD3-2364-4694-B9BD-570360E9F0A1" ModuleId="microgest" />
+</Modules>
