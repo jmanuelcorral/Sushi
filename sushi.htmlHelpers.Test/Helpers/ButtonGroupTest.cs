@@ -22,9 +22,9 @@ namespace sushi.htmlHelpers.Test.Helpers
              HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
              var ButtonElement = SushiExtension.Sushi(htmlHelper).Button();
              var comparer = SushiExtension.Sushi(htmlHelper).ButtonGroup().AddButton(ButtonElement).ToString();
-             Assert.AreEqual(comparer, "<div class=\"btn-group\" id=\"ButtonGroupComponent1\"></div>");
-         }
-
+             Assert.AreEqual(comparer, "<div class=\"btn-group\" id=\"ButtonGroupComponent1\"><input class=\"btn btn-normal\" type=\"submit\" value=\"#EmptyValue\" /></div>");
          }
 
     }
+
+}
