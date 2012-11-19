@@ -119,15 +119,15 @@ namespace Sushi.MenuHelper
         {
             TagBuilder navbar = new TagBuilder("div");
             TagBuilder navbarinner = new TagBuilder("div");
-            TagBuilder container = new TagBuilder("div");
+            //TagBuilder container = new TagBuilder("div");
             navbar.AddCssClass("navbar-inner");
             navbarinner.AddCssClass("navbar");
-            container.AddCssClass("container");
+            //container.AddCssClass("container");
             foreach (var sushiComponentBuilder in ContainerElements)
             {
-                container.InnerHtml += sushiComponentBuilder.ToString();
+                navbarinner.InnerHtml += sushiComponentBuilder.ToString();
             }
-            navbarinner.InnerHtml = container.ToString(TagRenderMode.Normal);
+            //navbarinner.InnerHtml = container.ToString(TagRenderMode.Normal);
             navbar.InnerHtml = navbarinner.ToString(TagRenderMode.Normal);
             return navbar.ToString();
         }

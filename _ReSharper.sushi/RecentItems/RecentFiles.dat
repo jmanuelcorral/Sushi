@@ -16,7 +16,6 @@
     <File id="8F37DEF0-6E9F-48E6-A4CE-81D8F8E81DA7/d:PanelHelper/f:Panel.cs" caret="1557" fromTop="16" />
     <File id="E4B70740-EED8-4F6A-84A2-13EFB16BE048/f:FakeHtmlHelper.cs" caret="1438" fromTop="27" />
     <File id="8F37DEF0-6E9F-48E6-A4CE-81D8F8E81DA7/d:PanelHelper/f:PanelComponent.cs" caret="85" fromTop="5" />
-    <File id="E4B70740-EED8-4F6A-84A2-13EFB16BE048/d:Helpers/f:ButtonTest.cs" caret="658" fromTop="21" />
     <File id="8F37DEF0-6E9F-48E6-A4CE-81D8F8E81DA7/d:Extensions/f:SushiFactory.cs" caret="9991" fromTop="348" />
     <File id="8F37DEF0-6E9F-48E6-A4CE-81D8F8E81DA7/d:ButtonHelper/f:Button.cs" caret="2896" fromTop="14" />
     <File id="8F37DEF0-6E9F-48E6-A4CE-81D8F8E81DA7/d:IconHelper/f:IconComponent.cs" caret="412" fromTop="17" />
@@ -24,7 +23,10 @@
     <File id="E4B70740-EED8-4F6A-84A2-13EFB16BE048/d:Helpers/f:MenuTest.cs" caret="258" fromTop="0" />
     <File id="E4B70740-EED8-4F6A-84A2-13EFB16BE048/d:Helpers/f:PanelTest.cs" caret="3061" fromTop="19" />
     <File id="E4B70740-EED8-4F6A-84A2-13EFB16BE048/d:Helpers/f:NavigationTest.cs" caret="2041" fromTop="29" />
-    <File id="E4B70740-EED8-4F6A-84A2-13EFB16BE048/d:Helpers/f:ButtonGroupTest.cs" caret="783" fromTop="21" />
+    <File id="8F37DEF0-6E9F-48E6-A4CE-81D8F8E81DA7/f:ISushiSkinnable.cs" caret="0" fromTop="0" />
+    <File id="8F37DEF0-6E9F-48E6-A4CE-81D8F8E81DA7/f:ISushiComponent.cs" caret="149" fromTop="9" />
+    <File id="E4B70740-EED8-4F6A-84A2-13EFB16BE048/d:Helpers/f:ButtonGroupTest.cs" caret="578" fromTop="6" />
+    <File id="E4B70740-EED8-4F6A-84A2-13EFB16BE048/d:Helpers/f:ButtonTest.cs" caret="368" fromTop="13" />
   </RecentFiles>
   <RecentEdits>
     <File id="8F37DEF0-6E9F-48E6-A4CE-81D8F8E81DA7/d:Extensions/f:SushiFactory.cs" caret="4363" fromTop="27" />
@@ -49,7 +51,7 @@
     <File id="E4B70740-EED8-4F6A-84A2-13EFB16BE048/d:Helpers/f:NavigationTest.cs" caret="1092" fromTop="24" />
     <File id="E4B70740-EED8-4F6A-84A2-13EFB16BE048/d:Helpers/f:NavigationTest.cs" caret="1646" fromTop="20" />
     <File id="E4B70740-EED8-4F6A-84A2-13EFB16BE048/d:Helpers/f:NavigationTest.cs" caret="1889" fromTop="24" />
-    <File id="E4B70740-EED8-4F6A-84A2-13EFB16BE048/d:Helpers/f:ButtonGroupTest.cs" caret="1115" fromTop="25" />
-    <File id="E4B70740-EED8-4F6A-84A2-13EFB16BE048/d:Helpers/f:ButtonGroupTest.cs" caret="849" fromTop="22" />
+    <File id="E4B70740-EED8-4F6A-84A2-13EFB16BE048/d:Helpers/f:ButtonGroupTest.cs" caret="1178" fromTop="25" />
+    <File id="E4B70740-EED8-4F6A-84A2-13EFB16BE048/d:Helpers/f:ButtonGroupTest.cs" caret="1175" fromTop="29" />
   </RecentEdits>
 </RecentFiles>
