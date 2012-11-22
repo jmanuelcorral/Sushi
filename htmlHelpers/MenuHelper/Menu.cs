@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Web.Mvc;
 using Sushi.Enums;
+using Sushi.FormHelper;
 using Sushi.Html;
 using Sushi.NavigationHelper;
 using Sushi.Resolvers;
@@ -21,11 +22,6 @@ namespace Sushi.MenuHelper
         private MenuComponent Component { get; set; }
 
         #region Fluent Menu Setters
-        public Menu AddElement(ISushiComponentBuilder element)
-        {
-            this.ContainerElements.Add(element);
-            return this;
-        }
 
         public Menu SetPosition(MenuPosition position)
         {
@@ -41,6 +37,14 @@ namespace Sushi.MenuHelper
             return this;
         }
 
+        //public Menu AddNavigation(Navigation navigationBuilder, PullLeft )
+        //{
+        //    navigationBuilder.ViewContext = this.ViewContext;
+        //    navigationBuilder.Component.HtmlProperties.Id = Resolvers.HtmlResolver.GenerateHtmlValidId(this.ViewContext, navigationBuilder.GetType());
+        //    this.ContainerElements.Add(navigationBuilder);
+        //    return this;
+        //}
+
         public Menu AddNavigationDropDown(NavigationDropDown NavDropDown)
         {
             NavDropDown.ViewContext = this.ViewContext;
@@ -48,7 +52,29 @@ namespace Sushi.MenuHelper
             this.ContainerElements.Add(NavDropDown);
             return this;
         }
-        
+
+        private Menu AddForm(Form form)
+        {
+            form.ViewContext = this.ViewContext;
+            form.Component.HtmlProperties.Id = Resolvers.HtmlResolver.GenerateHtmlValidId(this.ViewContext, form.GetType());
+            this.ContainerElements.Add(form);
+            return this;
+        }
+
+        public Menu AddSearchForm(Form searchForm)
+        {
+            searchForm.SetNavFormType(MenuFormType.Search);
+            return AddForm(searchForm);
+
+        }
+
+        public Menu AddNavForm(Form form)
+        {
+            form.SetNavFormType(MenuFormType.None);
+            return AddForm(form);
+        }
+
+
 
        #endregion
 
@@ -71,63 +97,54 @@ namespace Sushi.MenuHelper
         #region StringBuilders
 
      
-        private void SetCSSBaseMenuContainerClass(ref TagBuilder tag)
-        {
-            tag.AddCssClass(LayoutManager.ResolveContainerLayout(this.Component.ContainerType));
-        }
+        //private void SetCSSBaseMenuContainerClass(ref TagBuilder tag)
+        //{
+        //    tag.AddCssClass(LayoutManager.ResolveContainerLayout(this.Component.ContainerType));
+        //}
 
        
         
-        private TagBuilder CreateCollapsableProperties()
-        {
-            TagBuilder tagBuilder = new TagBuilder("a");
-            tagBuilder.Attributes.Add("data-toggle", "collapse");
-            tagBuilder.Attributes.Add("data-target", ".nav-collapse");
-            tagBuilder.AddCssClass("btn");
-            tagBuilder.AddCssClass("btn-navbar");
-            var spanTag = new TagBuilder("span");
-            spanTag.AddCssClass("icon-bar");
-            tagBuilder.InnerHtml = spanTag.ToString(TagRenderMode.Normal);
-            tagBuilder.InnerHtml += spanTag.ToString(TagRenderMode.Normal);
-            tagBuilder.InnerHtml += spanTag.ToString(TagRenderMode.Normal);
-            return tagBuilder;
-        }
+        //private TagBuilder CreateCollapsableProperties()
+        //{
+        //    TagBuilder tagBuilder = new TagBuilder("a");
+        //    tagBuilder.Attributes.Add("data-toggle", "collapse");
+        //    tagBuilder.Attributes.Add("data-target", ".nav-collapse");
+        //    tagBuilder.AddCssClass("btn");
+        //    tagBuilder.AddCssClass("btn-navbar");
+        //    var spanTag = new TagBuilder("span");
+        //    spanTag.AddCssClass("icon-bar");
+        //    tagBuilder.InnerHtml = spanTag.ToString(TagRenderMode.Normal);
+        //    tagBuilder.InnerHtml += spanTag.ToString(TagRenderMode.Normal);
+        //    tagBuilder.InnerHtml += spanTag.ToString(TagRenderMode.Normal);
+        //    return tagBuilder;
+        //}
 
         
 
-        private TagBuilder CreateCollapsableMenu()
-        {
-            TagBuilder tagBuilder = new TagBuilder("div");
-            tagBuilder.AddCssClass("nav-collapse");
-            tagBuilder.AddCssClass("collapse");
-            return tagBuilder;
-        }
+        //private TagBuilder CreateCollapsableMenu()
+        //{
+        //    TagBuilder tagBuilder = new TagBuilder("div");
+        //    tagBuilder.AddCssClass("nav-collapse");
+        //    tagBuilder.AddCssClass("collapse");
+        //    return tagBuilder;
+        //}
         
         #endregion
 
         #region IHtmlString
 
-        private void LoadPositionTips()
-        {
-            if (this.Component.Position == MenuPosition.FixedTop)
-            {
-                this.ViewContext.Writer.Write("<style> body {padding-top: 60px;padding-bottom: 40px;} .sidebar-nav {padding: 9px 0;} </style>");
-            }
-        }
 
         public override String ToString()
         {
             TagBuilder navbar = new TagBuilder("div");
             TagBuilder navbarinner = new TagBuilder("div");
-            //TagBuilder container = new TagBuilder("div");
-            navbar.AddCssClass("navbar-inner");
-            navbarinner.AddCssClass("navbar");
-            //container.AddCssClass("container");
+            if (this.Component.Position != MenuPosition.UnFixed) navbar.AddCssClass(Resolvers.MenuResolver.ResolvePosition(this.Component.Position));
+            navbar.AddCssClass(CssBaseclass);
+            navbarinner.AddCssClass(CssBaseInnerNav);
             foreach (var sushiComponentBuilder in ContainerElements)
             {
                 navbarinner.InnerHtml += sushiComponentBuilder.ToString();
             }
-            //navbarinner.InnerHtml = container.ToString(TagRenderMode.Normal);
             navbar.InnerHtml = navbarinner.ToString(TagRenderMode.Normal);
             return navbar.ToString();
         }

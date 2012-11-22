@@ -143,7 +143,7 @@ namespace Sushi.Gridhelper
             return BuildTable();
         }
 
-        public String ToString()
+        public override String ToString()
         {
             return ToHtmlString();
         }

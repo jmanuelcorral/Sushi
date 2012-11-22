@@ -14,8 +14,6 @@ namespace Sushi.LayoutHelper
         public ViewContext ViewContext { get; private set; }
         public ICollection<ISushiComponentBuilder> ContainerElements { get; private set; }
         private LayoutComponent Component { get; set; }
-        private bool disposed;
-
 
         #region Fluent SideBar Setters
         public Layout AddElement(ISushiComponentBuilder element)

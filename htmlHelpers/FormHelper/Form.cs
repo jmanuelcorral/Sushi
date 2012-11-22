@@ -10,8 +10,8 @@ namespace Sushi.FormHelper
     public class Form:ISushiComponentBuilder,ISushiContainer
     {
         #region Builder Properties
-        public ViewContext ViewContext { get; private set; }
-        private FormComponent Component { get; set; }
+        public ViewContext ViewContext { get; internal set; }
+        internal FormComponent Component { get; set; }
         public ICollection<ISushiComponentBuilder> ContainerElements { get; private set; } 
         #endregion
 
@@ -60,6 +60,20 @@ namespace Sushi.FormHelper
             this.Component.HtmlProperties = new HtmlProperties(view, this.Component.GetType());
             this.ContainerElements = new Collection<ISushiComponentBuilder>();
             this.Component.CSSClasses = new List<string>();
+        }
+
+        public Form()
+        {
+            this.Component = new FormComponent();
+            this.Component.HtmlProperties = new HtmlProperties();
+            this.ContainerElements = new Collection<ISushiComponentBuilder>();
+            this.Component.CSSClasses = new List<string>();
+        }
+
+        internal Form SetNavFormType(MenuFormType menuForm)
+        {
+            this.AddCssClass(Resolvers.FormResolver.ResolveMenuType(menuForm));
+            return this;
         }
         #endregion
 

@@ -1,61 +1,116 @@
 ﻿using System.Web.Mvc;
 using NUnit.Framework;
+using Sushi.Enums;
+using Sushi.Extensions;
+using Sushi.FormHelper;
+using Sushi.LinkHelper;
+using Sushi.NavigationHelper;
 
 namespace sushi.htmlHelpers.Test.Helpers
 {
     [TestFixture]
     public class MenuTest
     {
-        /*
+
         [Test]
-        public void TestDefault()
+        public void TestEmptyMenu()
         {
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
             var comparer = SushiExtension.Sushi(htmlHelper).Menu().ToHtmlString();
-            Assert.AreEqual(comparer,
-                            "<div class=\"navbar-inner\"><div class=\"navbar\"><div class=\"container\"></div></div></div>");
+            Assert.AreEqual(comparer, "<div class=\"navbar\"><div class=\"navbar-inner\"></div></div>");
         }
 
         [Test]
-        public void TestPositions()
+        public void TestNavMenu()
+        {
+            HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
+            var comparer = SushiExtension.Sushi(htmlHelper).Menu().AddNavigation(new Navigation("menu").AddLink(new Link("testlink"))).ToHtmlString();
+            Assert.AreEqual(comparer, "<div class=\"navbar\"><div class=\"navbar-inner\"><ul class=\"nav\" id=\"Navigation1\"><li id=\"NavigationItemComponent1\"><a href=\"\" id=\"testlink\"></a></li></ul></div></div>");
+        }
+
+        [Test]
+        public void TestThreeElementsNavMenu()
+        {
+            HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
+            var comparer = SushiExtension.Sushi(htmlHelper).Menu().AddNavigation(
+                new Navigation("menu")
+                    .AddLink(new Link("testlink"))
+                    .AddLink(new Link("testlink2"))
+                    .AddLink(new Link("testlink3"))
+                ).ToHtmlString();
+
+            var resultExpected = "<div class=\"navbar\"><div class=\"navbar-inner\">" +
+                                 "<ul class=\"nav\" id=\"Navigation1\">" +
+                                 "<li id=\"NavigationItemComponent1\"><a href=\"\" id=\"testlink\"></a></li>" +
+                                 "<li id=\"NavigationItemComponent2\"><a href=\"\" id=\"testlink2\"></a></li>" +
+                                 "<li id=\"NavigationItemComponent3\"><a href=\"\" id=\"testlink3\"></a></li>" +
+                                 "</ul>" +
+                                 "</div></div>";
+            Assert.AreEqual(comparer, resultExpected);
+        }
+
+        [Test]
+        public void TestPositionFixedTopNavMenu()
         {
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
             var comparer = SushiExtension.Sushi(htmlHelper).Menu().SetPosition(MenuPosition.FixedTop).ToHtmlString();
-            Assert.AreEqual(comparer,
-                            "<div class=\"navbar-inner\"><div class=\"navbar\"><div class=\"container\"></div></div></div>");
-            comparer = SushiExtension.Sushi(htmlHelper).Menu().SetPosition(MenuPosition.UnFixed).ToHtmlString();
-            Assert.AreEqual(comparer,
-                            "<div class=\"navbar-inner\"><div class=\"navbar\"><div class=\"container\"></div></div></div>");
-            Assert.Inconclusive("Falta por poner en marcha");
+            var resultExpected = "<div class=\"navbar navbar-fixed-top\"><div class=\"navbar-inner\"></div></div>";
+            Assert.AreEqual(comparer, resultExpected);
         }
 
         [Test]
-        public void TestAddingLink()
+        public void TestPositionFixedBottomNavMenu()
+        {
+            HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
+            var comparer = SushiExtension.Sushi(htmlHelper).Menu().SetPosition(MenuPosition.FixedBottom).ToHtmlString();
+            var resultExpected = "<div class=\"navbar navbar-fixed-bottom\"><div class=\"navbar-inner\"></div></div>";
+            Assert.AreEqual(comparer, resultExpected);
+        }
+
+        [Test]
+        public void TestAddSearchForm()
+        {
+            HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
+            var comparer = SushiExtension.Sushi(htmlHelper).Menu().AddSearchForm(new Form()).ToHtmlString();
+            var resultExpected = "<div class=\"navbar navbar-fixed-top\"><div class=\"navbar-inner\">"+
+                                 "<form class=\"navbar-search\" id=\"Form1\"></form>"+
+                                 "</div></div>";
+            Assert.AreEqual(comparer, resultExpected);
+        }
+
+        [Test]
+        public void TestAddNormalForm()
+        {
+            HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
+            var comparer = SushiExtension.Sushi(htmlHelper).Menu().AddNavForm(new Form()).ToHtmlString();
+            var resultExpected = "<div class=\"navbar navbar-fixed-top\"><div class=\"navbar-inner\">" +
+                                 "<form class=\"navbar-form\" id=\"Form1\"></form>" +
+                                 "</div></div>";
+            Assert.AreEqual(comparer, resultExpected);
+        }
+
+        [Test]
+        public void TestAddDropDownMenu()
         {
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
             var comparer = SushiExtension.Sushi(htmlHelper).Menu()
-                                                        .AddElement(SushiExtension.Sushi(htmlHelper).Link())
-                                                        .ToHtmlString();
-            Assert.AreEqual(comparer, "<div class=\"navbar-inner\"><div class=\"navbar\"><div class=\"container\"><a href=\"\" id=\"SushiLink1\"></a></div></div></div>");
-        }
+                .AddNavigationDropDown(
+                    new NavigationDropDown()
+                        .SetCaption("File")
+                        .AddLink(new Link().SetCaption("New").SetAction("#"))).ToHtmlString();
 
-        [Test]
-        public void TestAddingSearch()
-        {
-            HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
-            var comparer = SushiExtension.Sushi(htmlHelper).Menu()
-                                                        .AddElement(SushiExtension.Sushi(htmlHelper).MenuSearchBoxItem())
-                                                        .ToHtmlString();
-            Assert.AreEqual(comparer, "<div class=\"navbar-inner\"><div class=\"navbar\"><div class=\"container\"><form class=\"navbar-search pull-left\" id=\"SushiForm1\"><input class=\"span1 search-query\" id=\"SushiInput1\" name=\"\" type=\"text\" value=\"\"></input></form></div></div></div>");
+            var resultExpected = "<div class=\"navbar navbar-fixed-top\">"+
+                                 "<div class=\"navbar-inner\">"+
+                                 "<ul class=\"nav\">"+
+                                 "<li class=\"dropdown\">" +
+                                    "<a class=\"dropdown-toggle\" data-toggle=\"dropdown\">File<b class=\"caret\"></b></a>" +
+                                    "<ul class=\"dropdown-menu\">"+
+                                        "<li><a href=\"#\">New</a></li>" +
+                                    "</ul>"+
+                                "</li>"+
+                                "</ul>"+
+                                "</div></div>";
+            Assert.AreEqual(comparer, resultExpected);
         }
-
-        [Test]
-        public void TestAddingNavigation()
-        {
-            HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
-            var comparer = SushiExtension.Sushi(htmlHelper).Menu().AddElement(SushiExtension.Sushi(htmlHelper).Navigation()).ToHtmlString();
-            Assert.AreEqual(comparer, "<div class=\"navbar-inner\"><div class=\"navbar\"><div class=\"container\"><ul class=\"nav\" id=\"SushiNavigation1\"></ul></div></div></div>");
-        }
-         */
     }
 }

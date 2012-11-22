@@ -28,6 +28,12 @@ namespace Sushi.LinkHelper
             return this;
         }
 
+        public Link AddCssClass(String cssclass)
+        {
+            this.Component.cssClasses.Add(cssclass);
+            return this;
+        }
+
         public Link SetAction(String action)
         {
             this.Component.Action = action;
@@ -114,10 +120,7 @@ namespace Sushi.LinkHelper
                 tagBuilder.InnerHtml = this.Component.LinkIcon.ToString();
             }
             tagBuilder.InnerHtml += this.Component.HtmlProperties.InnerHtml;
-            
-            
-                return tagBuilder.ToString(TagRenderMode.Normal);    
-            
+            return tagBuilder.ToString(TagRenderMode.Normal);    
         }
 
         #endregion

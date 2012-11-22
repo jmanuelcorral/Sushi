@@ -69,6 +69,14 @@ namespace Sushi.DropDownHelper
             this.ContainerElements = new Collection<ISushiComponentBuilder>();
             this.Component.Skin = new DropDownSkin();
         }
+
+        public DropDown()
+        {
+            this.Component = new DropDownComponent();
+            this.Component.HtmlProperties = new HtmlProperties();
+            this.ContainerElements = new Collection<ISushiComponentBuilder>();
+            this.Component.Skin = new DropDownSkin();
+        }
         #endregion
 
         #region StringBuilders
@@ -77,7 +85,7 @@ namespace Sushi.DropDownHelper
         private String CreateSushiDropDown()
         {
             var tagBuilder = new TagBuilder("ul");
-            tagBuilder.Attributes.Add("id", this.Component.HtmlProperties.Id);
+            if (!String.IsNullOrEmpty(Component.HtmlProperties.Id)) tagBuilder.Attributes.Add("id", this.Component.HtmlProperties.Id);
             tagBuilder.AddCssClass(this.Component.Skin.CssBaseclass);
             if (!String.IsNullOrEmpty(Component.HtmlProperties.Name)) tagBuilder.Attributes.Add("name", this.Component.HtmlProperties.Name);
             //Bucle para añadir Hijos

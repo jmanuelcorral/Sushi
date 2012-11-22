@@ -30,7 +30,7 @@ namespace Sushi.IconHelper
             return this;
         }
 
-        public String ToString()
+        public override String ToString()
         {
             TagBuilder icontag = new TagBuilder("i");
             icontag.AddCssClass(Resolvers.IconManager.ResolveIcon(component.IconType));

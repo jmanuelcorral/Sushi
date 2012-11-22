@@ -12,6 +12,8 @@ namespace Sushi.Resolvers
             {
                     case MenuPosition.FixedTop:
                         return "navbar-fixed-top";
+                    case MenuPosition.FixedBottom:
+                        return "navbar-fixed-bottom";
                     case MenuPosition.UnFixed:
                         return String.Empty;
             }

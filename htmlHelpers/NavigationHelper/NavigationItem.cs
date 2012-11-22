@@ -73,7 +73,14 @@ namespace Sushi.NavigationHelper
             this.Component.cssClasses = new List<string>();
         }
 
-
+        public NavigationItem()
+        {
+            this.Component = new NavigationItemComponent();
+            this.Component.HtmlProperties = new HtmlProperties();
+            this.Component.Active = false;
+            this.ContainerElements = new Collection<ISushiComponentBuilder>();
+            this.Component.cssClasses = new List<string>();
+        }
         #endregion
 
         #region StringBuilders
@@ -82,7 +89,7 @@ namespace Sushi.NavigationHelper
         private String CreateSushiNavigationItem()
         {
             var tagBuilder = new TagBuilder("li");
-            tagBuilder.Attributes.Add("id", this.Component.HtmlProperties.Id);
+            if (!String.IsNullOrEmpty(Component.HtmlProperties.Id)) tagBuilder.Attributes.Add("id", this.Component.HtmlProperties.Id);
             if (this.Component.Active) tagBuilder.AddCssClass(cssActiveClass);
             if (!String.IsNullOrEmpty(Component.HtmlProperties.Name)) tagBuilder.Attributes.Add("name", this.Component.HtmlProperties.Name);
             if (this.Component.cssClasses.Count > 0)

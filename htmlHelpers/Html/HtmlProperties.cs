@@ -17,8 +17,8 @@ namespace Sushi.Html
         {
             get
             {
-                if (String.IsNullOrEmpty(_id))
-                    _id = HtmlResolver.GenerateHtmlValidId(this._viewContext, _objectType);
+                //if (String.IsNullOrEmpty(_id))
+                //    _id = HtmlResolver.GenerateHtmlValidId(this._viewContext, _objectType);
                 return _id;
             }
             set { 

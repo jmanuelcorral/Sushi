@@ -3,6 +3,7 @@
     public enum MenuPosition
     {
         FixedTop,
+        FixedBottom,
         UnFixed
     }
 
@@ -16,7 +17,7 @@
     {
         Link,
         DropDown,
-        SearchBox
+        Form
     }
 
     public enum DropDownMenuItemType

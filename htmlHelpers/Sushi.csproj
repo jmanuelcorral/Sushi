@@ -70,6 +70,7 @@
     <Compile Include="DropDownHelper\DropDownSkin.cs" />
     <Compile Include="Enums\Button.cs" />
     <Compile Include="Enums\Field.cs" />
+    <Compile Include="Enums\Form.cs" />
     <Compile Include="Enums\Grid.cs" />
     <Compile Include="Enums\HtmlAttributes.cs" />
     <Compile Include="Enums\Icon.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="NavigationHelper\NavigationItemHeaderComponent.cs" />
     <Compile Include="NavigationHelper\NavigationItemHeader.cs" />
     <Compile Include="PanelHelper\Panel.cs" />
+    <Compile Include="Resolvers\FormResolver.cs" />
     <Compile Include="Resolvers\GridResolver.cs" />
     <Compile Include="Resolvers\HtmlResolver.cs" />
     <Compile Include="Resolvers\IconResolver.cs" />
