@@ -30,11 +30,16 @@ namespace Sushi.NavigationHelper
             return this;
         }
 
-        //public NavigationDropDown SetIcon(Icon iconType, IconColor color)
-        //{
-        //    this.Component.Link.SetIcon(iconType, color);
-        //    return this;
-        //}
+        public NavigationDropDown SetIcon(Icon iconType, IconColor color)
+        {
+            if (this.Component.LinkIcon == null)
+            {
+                this.Component.LinkIcon = new IconHelper.Icon();
+            }
+            this.Component.LinkIcon.SetIconType(iconType);
+            this.Component.LinkIcon.SetIconColor(color);
+            return this;
+        }
 
         public NavigationDropDown AddLink(Link link)
         {
@@ -105,7 +110,11 @@ namespace Sushi.NavigationHelper
             liBuilder.AddCssClass("dropdown");
             TagBuilder aBuilder = new TagBuilder("a");
             aBuilder.AddCssClass("dropdown-toggle");
-            aBuilder.InnerHtml = this.Component.Caption + "<b class=\"caret\"></b>";
+            if (this.Component.LinkIcon != null)
+            {
+                aBuilder.InnerHtml = this.Component.LinkIcon.ToString();
+            }
+            aBuilder.InnerHtml += this.Component.Caption + "<b class=\"caret\"></b>";
             aBuilder.Attributes.Add(HtmlResolver.GenerateHtmlAttributeString(HtmlAttributes.data_toggle), "dropdown");
             liBuilder.InnerHtml = aBuilder.ToString(TagRenderMode.Normal) + this.Component.DropDownMenu.ToString();
             uBuilder.InnerHtml = liBuilder.ToString(TagRenderMode.Normal);

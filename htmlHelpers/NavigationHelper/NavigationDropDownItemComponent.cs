@@ -11,6 +11,6 @@ namespace Sushi.NavigationHelper
           //public Link Link { get; set; }
           public NavigationItem NavigationItem { get; set; }
           public DropDown DropDownMenu { get; set; }
-        
+          public IconHelper.Icon LinkIcon { get; set; }
     }
 }

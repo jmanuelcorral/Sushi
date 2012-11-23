@@ -112,5 +112,29 @@ namespace sushi.htmlHelpers.Test.Helpers
                                 "</div></div>";
             Assert.AreEqual(comparer, resultExpected);
         }
+
+        [Test]
+        public void TestAddDropDownIconMenu()
+        {
+            HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
+            var comparer = SushiExtension.Sushi(htmlHelper).Menu()
+                .AddNavigationDropDown(
+                    new NavigationDropDown()
+                        .SetCaption("File").SetIcon(Icon.IconFile, IconColor.Black)
+                        .AddLink(new Link().SetCaption("New").SetAction("#"))).ToHtmlString();
+
+            var resultExpected = "<div class=\"navbar navbar-fixed-top\">" +
+                                 "<div class=\"navbar-inner\">" +
+                                 "<ul class=\"nav\">" +
+                                 "<li class=\"dropdown\">" +
+                                    "<a class=\"dropdown-toggle\" data-toggle=\"dropdown\"><i class=\"icon-file\"></i>File<b class=\"caret\"></b></a>" +
+                                    "<ul class=\"dropdown-menu\">" +
+                                        "<li><a href=\"#\">New</a></li>" +
+                                    "</ul>" +
+                                "</li>" +
+                                "</ul>" +
+                                "</div></div>";
+            Assert.AreEqual(comparer, resultExpected);
+        }
     }
 }
