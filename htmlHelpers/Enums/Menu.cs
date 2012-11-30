@@ -2,9 +2,10 @@
 {
     public enum MenuPosition
     {
+        UnFixed,
         FixedTop,
-        FixedBottom,
-        UnFixed
+        FixedBottom
+        
     }
 
     public enum MenuBehaviour

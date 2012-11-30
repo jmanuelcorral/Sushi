@@ -13,7 +13,7 @@ namespace sushi.htmlHelpers.Test.Helpers
         {
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
             var comparer = SushiExtension.Sushi(htmlHelper).Navigation().ToHtmlString();
-            Assert.AreEqual(comparer, "<ul class=\"nav\" id=\"NavigationComponent1\"></ul>");
+            Assert.AreEqual(comparer, "<ul class=\"nav\"></ul>");
         }
 
         [Test]
@@ -22,7 +22,7 @@ namespace sushi.htmlHelpers.Test.Helpers
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
             var comparer = SushiExtension.Sushi(htmlHelper).Navigation()
                                                             .AddElement(SushiExtension.Sushi(htmlHelper).NavigationItem()).ToHtmlString();
-            Assert.AreEqual(comparer, "<ul class=\"nav\" id=\"NavigationComponent1\"><li id=\"NavigationItemComponent1\"></li></ul>");
+            Assert.AreEqual(comparer, "<ul class=\"nav\"><li></li></ul>");
         }
 
         [Test]
@@ -31,15 +31,17 @@ namespace sushi.htmlHelpers.Test.Helpers
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
             var comparer = SushiExtension.Sushi(htmlHelper).Navigation()
                                                             .AddElement(SushiExtension.Sushi(htmlHelper).NavigationItemHeader()).ToHtmlString();
-            Assert.AreEqual(comparer, "<ul class=\"nav\" id=\"NavigationComponent1\"><li class=\"nav-header\"></li></ul>");
+            Assert.AreEqual(comparer, "<ul class=\"nav\"><li class=\"nav-header\"></li></ul>");
         }
 
         [Test]
         public void TestNavigationItemSeparator()
         {
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
-            //var comparer = SushiExtension.Sushi(htmlHelper).Navigation().
-            Assert.Inconclusive("Falta la funcionalidad");
+            var comparer = SushiExtension.Sushi(htmlHelper).Navigation().AddSeparator().ToHtmlString();
+            string result="<ul class=\"nav\"><li class=\"divider\"></li></ul>";
+            Assert.AreEqual(comparer, result);
+            
         }
         
     }

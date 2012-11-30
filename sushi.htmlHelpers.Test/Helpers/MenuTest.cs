@@ -25,7 +25,7 @@ namespace sushi.htmlHelpers.Test.Helpers
         {
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
             var comparer = SushiExtension.Sushi(htmlHelper).Menu().AddNavigation(new Navigation("menu").AddLink(new Link("testlink"))).ToHtmlString();
-            Assert.AreEqual(comparer, "<div class=\"navbar\"><div class=\"navbar-inner\"><ul class=\"nav\" id=\"Navigation1\"><li id=\"NavigationItemComponent1\"><a href=\"\" id=\"testlink\"></a></li></ul></div></div>");
+            Assert.AreEqual(comparer, "<div class=\"navbar\"><div class=\"navbar-inner\"><ul class=\"nav\" id=\"Navigation1\"><li><a href=\"\" id=\"testlink\"></a></li></ul></div></div>");
         }
 
         [Test]
@@ -39,12 +39,13 @@ namespace sushi.htmlHelpers.Test.Helpers
                     .AddLink(new Link("testlink3"))
                 ).ToHtmlString();
 
-            var resultExpected = "<div class=\"navbar\"><div class=\"navbar-inner\">" +
-                                 "<ul class=\"nav\" id=\"Navigation1\">" +
-                                 "<li id=\"NavigationItemComponent1\"><a href=\"\" id=\"testlink\"></a></li>" +
-                                 "<li id=\"NavigationItemComponent2\"><a href=\"\" id=\"testlink2\"></a></li>" +
-                                 "<li id=\"NavigationItemComponent3\"><a href=\"\" id=\"testlink3\"></a></li>" +
-                                 "</ul>" +
+            var resultExpected = "<div class=\"navbar\">"+
+                                 "<div class=\"navbar-inner\">"+
+                                 "<ul class=\"nav\" id=\"Navigation1\">"+
+                                 "<li><a href=\"\" id=\"testlink\"></a></li>"+
+                                 "<li><a href=\"\" id=\"testlink2\"></a></li>"+
+                                 "<li><a href=\"\" id=\"testlink3\"></a></li>"+
+                                 "</ul>"+
                                  "</div></div>";
             Assert.AreEqual(comparer, resultExpected);
         }
@@ -72,9 +73,7 @@ namespace sushi.htmlHelpers.Test.Helpers
         {
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
             var comparer = SushiExtension.Sushi(htmlHelper).Menu().AddSearchForm(new Form()).ToHtmlString();
-            var resultExpected = "<div class=\"navbar navbar-fixed-top\"><div class=\"navbar-inner\">"+
-                                 "<form class=\"navbar-search\" id=\"Form1\"></form>"+
-                                 "</div></div>";
+            var resultExpected = "<div class=\"navbar\"><div class=\"navbar-inner\"><form class=\"navbar-search\" id=\"Form1\"></form></div></div>";
             Assert.AreEqual(comparer, resultExpected);
         }
 
@@ -83,7 +82,7 @@ namespace sushi.htmlHelpers.Test.Helpers
         {
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
             var comparer = SushiExtension.Sushi(htmlHelper).Menu().AddNavForm(new Form()).ToHtmlString();
-            var resultExpected = "<div class=\"navbar navbar-fixed-top\"><div class=\"navbar-inner\">" +
+            var resultExpected = "<div class=\"navbar\"><div class=\"navbar-inner\">" +
                                  "<form class=\"navbar-form\" id=\"Form1\"></form>" +
                                  "</div></div>";
             Assert.AreEqual(comparer, resultExpected);
@@ -99,7 +98,7 @@ namespace sushi.htmlHelpers.Test.Helpers
                         .SetCaption("File")
                         .AddLink(new Link().SetCaption("New").SetAction("#"))).ToHtmlString();
 
-            var resultExpected = "<div class=\"navbar navbar-fixed-top\">"+
+            var resultExpected = "<div class=\"navbar\">"+
                                  "<div class=\"navbar-inner\">"+
                                  "<ul class=\"nav\">"+
                                  "<li class=\"dropdown\">" +
@@ -123,7 +122,7 @@ namespace sushi.htmlHelpers.Test.Helpers
                         .SetCaption("File").SetIcon(Icon.IconFile, IconColor.Black)
                         .AddLink(new Link().SetCaption("New").SetAction("#"))).ToHtmlString();
 
-            var resultExpected = "<div class=\"navbar navbar-fixed-top\">" +
+            var resultExpected = "<div class=\"navbar\">" +
                                  "<div class=\"navbar-inner\">" +
                                  "<ul class=\"nav\">" +
                                  "<li class=\"dropdown\">" +

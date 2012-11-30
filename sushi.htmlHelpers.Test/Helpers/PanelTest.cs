@@ -14,19 +14,7 @@ namespace sushi.htmlHelpers.Test.Helpers
         {
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
             var comparer = SushiExtension.Sushi(htmlHelper).Panel().ToHtmlString();
-            Assert.AreEqual(comparer, "<div class=\"well\" id=\"PanelComponent1\"></div>");
-        }
-
-        [Test]
-        public void TestAutoID()
-        {
-            HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
-            var comparer1 = SushiExtension.Sushi(htmlHelper).Panel().ToHtmlString();
-            var comparer2 = SushiExtension.Sushi(htmlHelper).Panel().ToHtmlString();
-            var comparer3 = SushiExtension.Sushi(htmlHelper).Panel().ToHtmlString();
-            Assert.AreEqual(comparer1, "<div class=\"well\" id=\"PanelComponent1\"></div>");
-            Assert.AreEqual(comparer2, "<div class=\"well\" id=\"PanelComponent2\"></div>");
-            Assert.AreEqual(comparer3, "<div class=\"well\" id=\"PanelComponent3\"></div>");
+            Assert.AreEqual(comparer, "<div class=\"well\"></div>");
         }
 
         [Test]
@@ -34,7 +22,7 @@ namespace sushi.htmlHelpers.Test.Helpers
         {
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
             var comparer = SushiExtension.Sushi(htmlHelper).Panel().SetName("Name").ToHtmlString();
-            Assert.AreEqual(comparer, "<div class=\"well\" id=\"PanelComponent1\" name=\"Name\"></div>");
+            Assert.AreEqual(comparer, "<div class=\"well\" name=\"Name\"></div>");
         }
 
         [Test]
@@ -44,7 +32,7 @@ namespace sushi.htmlHelpers.Test.Helpers
             var comparer = SushiExtension.Sushi(htmlHelper).Panel()
                                         .AddElement(SushiExtension.Sushi(htmlHelper).Button())
                                         .ToHtmlString();
-            Assert.AreEqual(comparer, "<div class=\"well\" id=\"PanelComponent1\"><input class=\"btn btn-normal\" type=\"submit\" value=\"#EmptyValue\" /></div>");
+            Assert.AreEqual(comparer, "<div class=\"well\"><input class=\"btn btn-normal\" type=\"submit\" value=\"#EmptyValue\" /></div>");
 
         }
 
@@ -53,9 +41,9 @@ namespace sushi.htmlHelpers.Test.Helpers
         {
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
             var comparer = SushiExtension.Sushi(htmlHelper).Panel()
-                                        .AddInnerHTML("<input class=\"btn btn-normal\" id=\"SushiButton1\" type=\"submit\" value=\"#EmptyValue\" />")
+                                        .AddInnerHTML("<input class=\"btn btn-normal\" type=\"submit\" value=\"#EmptyValue\" />")
                                         .ToHtmlString();
-            Assert.AreEqual(comparer, "<div class=\"well\" id=\"PanelComponent1\"><input class=\"btn btn-normal\" id=\"SushiButton1\" type=\"submit\" value=\"#EmptyValue\" /></div>");
+            Assert.AreEqual(comparer, "<div class=\"well\"><input class=\"btn btn-normal\" type=\"submit\" value=\"#EmptyValue\" /></div>");
         }
 
         [Test]

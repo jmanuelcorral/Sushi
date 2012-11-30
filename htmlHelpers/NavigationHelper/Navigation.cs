@@ -57,6 +57,12 @@ namespace Sushi.NavigationHelper
             return this;
         }
 
+        public Navigation AddSeparator()
+        {
+            this.ContainerElements.Add(new SeparatorHelper.Separator());
+            return this;
+        }
+
         #endregion
   
         #region Constructor
@@ -101,7 +107,7 @@ namespace Sushi.NavigationHelper
             //Bucle para añadir Hijos
             foreach (var sushiComponentBuilder in ContainerElements)
             {
-                if (sushiComponentBuilder.GetType() != typeof(NavigationItem) && sushiComponentBuilder.GetType() != typeof(NavigationItemHeader))
+                if (sushiComponentBuilder.GetType() != typeof(NavigationItem) && sushiComponentBuilder.GetType() != typeof(NavigationItemHeader) && sushiComponentBuilder.GetType() != typeof(SeparatorHelper.Separator))
                 {
                     NavigationItem builder = new NavigationItem(ViewContext);
                     builder.AddElement(sushiComponentBuilder);
@@ -130,6 +136,6 @@ namespace Sushi.NavigationHelper
             return this.ToString();
         }
         #endregion
-    
+
     }
 }

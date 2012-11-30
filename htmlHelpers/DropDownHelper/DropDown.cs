@@ -88,23 +88,12 @@ namespace Sushi.DropDownHelper
             if (!String.IsNullOrEmpty(Component.HtmlProperties.Id)) tagBuilder.Attributes.Add("id", this.Component.HtmlProperties.Id);
             tagBuilder.AddCssClass(this.Component.Skin.CssBaseclass);
             if (!String.IsNullOrEmpty(Component.HtmlProperties.Name)) tagBuilder.Attributes.Add("name", this.Component.HtmlProperties.Name);
-            //Bucle para añadir Hijos
             foreach (var sushiComponentBuilder in ContainerElements)
             {
-                if (sushiComponentBuilder.GetType() == typeof(DropDownHeaderItem))
-                {
-                    DropDownHeaderItem builder = new DropDownHeaderItem(this.ViewContext);
-                    builder.AddElement(sushiComponentBuilder);
-                    tagBuilder.InnerHtml += builder.ToString();
-                }
-                else
-                {
                     DropDownItem builderC = new DropDownItem();
                     builderC.AddElement(sushiComponentBuilder);
                     tagBuilder.InnerHtml += builderC.ToString();
-                }
             }
-            //Fin Bucle
             return tagBuilder.ToString(TagRenderMode.Normal);
         }
 

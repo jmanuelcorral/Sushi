@@ -1,77 +1,141 @@
 ﻿using NUnit.Framework;
 using System.Web.Mvc;
+using Sushi.Extensions;
+using Sushi.LinkHelper;
+using Sushi.NavigationHelper;
 
 namespace sushi.htmlHelpers.Test.Helpers
 {
-     /*
-     Html.Sushi().NavigationDropDown()
-        .SetMenuValue("Componentes")
-        .AddDropDownHeaderElement("Botones")
-        .AddDropDownLinkElement(Html.Sushi().Link().SetAction("/home/buttons").SetCaption("Botones Normales"))
-        .AddDropDownLinkElement(Html.Sushi().Link().SetAction("#").SetCaption("Botones Desplegables"))
-        .AddDropDownLinkElement(Html.Sushi().Link().SetAction("#").SetCaption("Grupos"))
-        .AddDropDownLinkElement(Html.Sushi().Link().SetAction("#").SetCaption("Paginadores"))
-        .AddSeparator()
-        .AddDropDownHeaderElement("Navegacion")
-        .AddDropDownLinkElement(Html.Sushi().Link().SetAction("#").SetCaption("Menu"))
-        .AddDropDownLinkElement(Html.Sushi().Link().SetAction("#").SetCaption("Pills"))
-        .AddDropDownLinkElement(Html.Sushi().Link().SetAction("#").SetCaption("Tabs"))
-        .AddDropDownLinkElement(Html.Sushi().Link().SetAction("#").SetCaption("Stacked"))
-        .AddDropDownLinkElement(Html.Sushi().Link().SetAction("#").SetCaption("BreadCrumbs"))
-        .AddSeparator()
-        .AddDropDownHeaderElement("Formularios")
-        .AddDropDownLinkElement(Html.Sushi().Link().SetAction("#").SetCaption("En linea"))
-        .AddDropDownLinkElement(Html.Sushi().Link().SetAction("#").SetCaption("Embebidos"))
-     */
-
 
     [TestFixture]
     public class NavigationDropDownTest
     {
-        /*
         [Test]
-        public void TestDefault()
+        public void TestDefaultWithHtmlHelper()
         {
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
-            var comparer =
-                SushiExtension.Sushi(htmlHelper).NavigationDropDown().ToString();
-            Assert.AreEqual(comparer, "<li class=\"dropdown\" id=\"SushiNavigationItem1\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"\" id=\"SushiLink1\"><b class=\"caret\"></b></a></li>");
+            var comparer = SushiExtension.Sushi(htmlHelper).NavigationDropDown().ToString();
+            var result = "<ul class=\"nav\">" +
+                         "<li class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\"><b class=\"caret\"></b></a>" +
+                         "<ul class=\"dropdown-menu\">" +
+                         "</ul>" +
+                         "</li>" +
+                         "</ul>";
+            Assert.AreEqual(comparer, result);
         }
 
         [Test]
-        public void TestMenuValue()
+        public void TestDefaultStandalone()
         {
-            HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
-            var comparer = SushiExtension.Sushi(htmlHelper).NavigationDropDown().SetMenuValue("MenuCaption").ToString();
-            Assert.AreEqual(comparer, "<li class=\"dropdown\" id=\"SushiNavigationItem1\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"\" id=\"SushiLink1\">MenuCaption<b class=\"caret\"></b></a></li>");
-        }
-
-      
-        [Test]
-        public void TestDropDownHeaderElement()
-        {
-            HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
-            var comparer = SushiExtension.Sushi(htmlHelper).NavigationDropDown().AddDropDownHeaderElement("DDHeader").ToString();
-            Assert.AreEqual(comparer, "<li class=\"dropdown\" id=\"SushiNavigationItem1\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"\" id=\"SushiLink1\"><b class=\"caret\"></b></a><ul class=\"dropdown-menu\" id=\"SushiDropDown1\"><li id=\"SushiDropDownHeaderItem1\"><li class=\"nav-header\" id=\"SushiNavigationItemHeader1\">DDHeader</li></li></ul></li>");
+            var comparer = new NavigationDropDown().ToString();
+            var result = "<ul class=\"nav\">" +
+                         "<li class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\"><b class=\"caret\"></b></a>" +
+                         "<ul class=\"dropdown-menu\">" +
+                         "</ul>" +
+                         "</li>" +
+                         "</ul>";
+            Assert.AreEqual(comparer, result);
         }
 
         [Test]
-        public void TestDropDownLinkElement()
+        public void TestSetCaption()
         {
-            HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
-            var comparer = SushiExtension.Sushi(htmlHelper).NavigationDropDown().AddDropDownLinkElement(SushiExtension.Sushi(htmlHelper).Link()).ToString();
-            Assert.AreEqual(comparer, "<li class=\"dropdown\" id=\"SushiNavigationItem1\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"\" id=\"SushiLink1\"><b class=\"caret\"></b></a><ul class=\"dropdown-menu\" id=\"SushiDropDown1\"><li id=\"SushiDropDownHeaderItem1\"><a href=\"\" id=\"SushiLink2\"></a></li></ul></li>");
+            var comparer = new NavigationDropDown().SetCaption("Caption").ToString();
+            var result = "<ul class=\"nav\">" +
+                         "<li class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Caption<b class=\"caret\"></b></a>" +
+                         "<ul class=\"dropdown-menu\">" +
+                         "</ul>" +
+                         "</li>" +
+                         "</ul>";
+            Assert.AreEqual(comparer, result);
         }
-
 
         [Test]
-        public void TestSeparator()
+        public void TestAddLinkElement()
         {
-            HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
-            var comparer = SushiExtension.Sushi(htmlHelper).NavigationDropDown().AddSeparator().ToString();
-            Assert.AreEqual(comparer, "<li class=\"dropdown\" id=\"SushiNavigationItem1\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"\" id=\"SushiLink1\"><b class=\"caret\"></b></a><ul class=\"dropdown-menu\" id=\"SushiDropDown1\"><li id=\"SushiDropDownHeaderItem1\"><li class=\"divider\"></li></li></ul></li>");
+            var comparer = new NavigationDropDown().SetCaption("Menu")
+                                .AddLink(
+                                    new Link("testid").SetCaption("Link Option").SetAction("#")
+                                ).ToString();
+            var result = "<ul class=\"nav\">" +
+                         "<li class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Menu<b class=\"caret\"></b></a>" +
+                         "<ul class=\"dropdown-menu\">" +
+                         "<li><a href=\"#\" id=\"testid\">Link Option</a></li>" +
+                         "</ul>" +
+                         "</li>" +
+                         "</ul>";
+            Assert.AreEqual(comparer, result);
         }
-        */
+
+        [Test]
+        public void TestAddLinkElements()
+        {
+            var comparer = new NavigationDropDown().SetCaption("Menu")
+                                .AddLink(
+                                    new Link("testid").SetCaption("Link Option").SetAction("#")
+                                )
+                                .AddLink(
+                                    new Link("testid2").SetCaption("Link Option 2").SetAction("#")
+                                ).ToString();
+            var result = "<ul class=\"nav\">" +
+                         "<li class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Menu<b class=\"caret\"></b></a>" +
+                         "<ul class=\"dropdown-menu\">" +
+                         "<li><a href=\"#\" id=\"testid\">Link Option</a></li>" +
+                         "<li><a href=\"#\" id=\"testid2\">Link Option 2</a></li>" +
+                         "</ul>" +
+                         "</li>" +
+                         "</ul>";
+            Assert.AreEqual(comparer, result);
+        }
+
+        [Test]
+        public void TestAddHeaderAndLinks()
+        {
+            var comparer = new NavigationDropDown().SetCaption("Menu")
+                                .AddHeader("Cabecera 1")
+                                .AddLink(
+                                    new Link("testid").SetCaption("Link Option").SetAction("#")
+                                )
+                                .AddLink(
+                                    new Link("testid2").SetCaption("Link Option 2").SetAction("#")
+                                ).ToString();
+            var result = "<ul class=\"nav\">" +
+                         "<li class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Menu<b class=\"caret\"></b></a>" +
+                         "<ul class=\"dropdown-menu\">" +
+                         "<li class=\"nav-header\">Cabecera 1</li>" +
+                         "<li><a href=\"#\" id=\"testid\">Link Option</a></li>" +
+                         "<li><a href=\"#\" id=\"testid2\">Link Option 2</a></li>" +
+                         "</ul>" +
+                         "</li>" +
+                         "</ul>";
+            Assert.AreEqual(comparer, result);
+        }
+
+        [Test]
+        public void TestAddHeaderAndLinksAndSeparator()
+        {
+            var comparer = new NavigationDropDown().SetCaption("Menu")
+                                .AddHeader("Cabecera 1")
+                                .AddLink(
+                                    new Link("testid").SetCaption("Link Option").SetAction("#")
+                                )
+                                .AddLink(
+                                    new Link("testid2").SetCaption("Link Option 2").SetAction("#")
+                                )
+                                .AddSeparator()
+                                .ToString();
+            var result = "<ul class=\"nav\">" +
+                         "<li class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Menu<b class=\"caret\"></b></a>" +
+                         "<ul class=\"dropdown-menu\">" +
+                         "<li class=\"nav-header\">Cabecera 1</li>" +
+                         "<li><a href=\"#\" id=\"testid\">Link Option</a></li>" +
+                         "<li><a href=\"#\" id=\"testid2\">Link Option 2</a></li>" +
+                         "<li class=\"divider\"></li>" +
+                         "</ul>" +
+                         "</li>" +
+                         "</ul>";
+            Assert.AreEqual(comparer, result);
+        }
     }
 }
 

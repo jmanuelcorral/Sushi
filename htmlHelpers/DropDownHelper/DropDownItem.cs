@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Web.Mvc;
 using Sushi.Html;
+using Sushi.NavigationHelper;
 
 namespace Sushi.DropDownHelper
 {
@@ -66,7 +67,12 @@ namespace Sushi.DropDownHelper
             //Bucle para añadir Hijos
             foreach (var sushiComponentBuilder in ContainerElements)
             {
-                tagBuilder.InnerHtml += sushiComponentBuilder.ToString();
+                if (sushiComponentBuilder.GetType() == typeof(NavigationItemHeader))
+                        return sushiComponentBuilder.ToString();
+                else if (sushiComponentBuilder.GetType() == typeof(SeparatorHelper.Separator))
+                        return sushiComponentBuilder.ToString();
+                else
+                        tagBuilder.InnerHtml += sushiComponentBuilder.ToString();
             }
             //Fin Bucle
             return tagBuilder.ToString(TagRenderMode.Normal);
