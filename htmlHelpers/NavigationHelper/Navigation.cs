@@ -84,6 +84,15 @@ namespace Sushi.NavigationHelper
             this.Component.NavigationType = NavType.menu;
         }
 
+        public Navigation()
+        {
+            this.Component = new NavigationComponent();
+            this.Component.HtmlProperties = new HtmlProperties();
+            this.Component.HtmlProperties.Id = null;
+            this.ContainerElements = new Collection<ISushiComponentBuilder>();
+            this.Component.NavigationType = NavType.menu;
+        }
+
         public Navigation(ViewContext view, NavigationComponent Navigation)
         {
             this.ViewContext = view;
@@ -93,13 +102,12 @@ namespace Sushi.NavigationHelper
 
         #region StringBuilders
 
-
         private String CreateSushiNavigationItem()
         {
             var tagBuilder = new TagBuilder("ul");
             if (this.Component.HtmlProperties != null)
             {
-                tagBuilder.Attributes.Add("id", this.Component.HtmlProperties.Id);
+                if (!String.IsNullOrEmpty(Component.HtmlProperties.Id)) tagBuilder.Attributes.Add("id", this.Component.HtmlProperties.Id);
                 if (!String.IsNullOrEmpty(Component.HtmlProperties.Name)) tagBuilder.Attributes.Add("name", this.Component.HtmlProperties.Name);
             }
             tagBuilder.AddCssClass(NavResolver.ResolveNavigationType(this.Component.NavigationType));

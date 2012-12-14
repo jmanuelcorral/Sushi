@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Moq;
+using sushi.htmlHelpers.Test.Model;
 
 namespace sushi.htmlHelpers.Test
 {
@@ -52,5 +53,34 @@ namespace sushi.htmlHelpers.Test
             dict.Add("test", "test");
             return dict;
         }
+
+        public static HtmlHelper<List<Person>> CreateHtmlHelper(List<Person> fakeModel)
+        {
+            ViewDataDictionary vd = new ViewDataDictionary(fakeModel);
+            vd.Model = fakeModel;
+            //Create mockViewContext
+            Elements = new Hashtable();
+            var mockViewContext = new Mock<ViewContext>(
+                new ControllerContext(
+                    new Mock<HttpContextBase>().Object,
+                    new RouteData(),
+                    new Mock<ControllerBase>().Object),
+                new Mock<IView>().Object,
+                vd,
+                new TempDataDictionary(),
+                new Mock<TextWriter>().Object);
+            //We must initialize Writer Object 
+            mockViewContext.Setup(r => r.Writer.Write(It.IsAny<string>())).Callback((string s) => ResponseText += s);
+            mockViewContext.Setup(r => r.HttpContext.Items).Returns(Elements);
+
+            //DataContainer (used for StronglyTyped purposes)
+            var mockViewDataContainer = new Mock<IViewDataContainer>();
+            mockViewDataContainer.Setup(v => v.ViewData)
+                .Returns(vd);
+            return new HtmlHelper<List<Person>> (mockViewContext.Object,
+                                  mockViewDataContainer.Object);
+        }
     }
+
+  
 }

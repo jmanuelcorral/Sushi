@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using NUnit.Framework;
 using Sushi.Extensions;
+using Sushi.NavigationHelper;
 
 namespace sushi.htmlHelpers.Test.Helpers
 {
@@ -12,7 +13,7 @@ namespace sushi.htmlHelpers.Test.Helpers
         public void TestDefault()
         {
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
-            var comparer = SushiExtension.Sushi(htmlHelper).Navigation().ToHtmlString();
+            var comparer = new Navigation().ToHtmlString();
             Assert.AreEqual(comparer, "<ul class=\"nav\"></ul>");
         }
 
@@ -20,8 +21,7 @@ namespace sushi.htmlHelpers.Test.Helpers
         public void TestNavigationItem()
         {
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
-            var comparer = SushiExtension.Sushi(htmlHelper).Navigation()
-                                                            .AddElement(SushiExtension.Sushi(htmlHelper).NavigationItem()).ToHtmlString();
+            var comparer = new Navigation().AddElement(new NavigationItem()).ToHtmlString();
             Assert.AreEqual(comparer, "<ul class=\"nav\"><li></li></ul>");
         }
 
@@ -29,8 +29,7 @@ namespace sushi.htmlHelpers.Test.Helpers
         public void TestNavigationItemHeader()
         {
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
-            var comparer = SushiExtension.Sushi(htmlHelper).Navigation()
-                                                            .AddElement(SushiExtension.Sushi(htmlHelper).NavigationItemHeader()).ToHtmlString();
+            var comparer = new Navigation().AddElement(new NavigationItemHeader()).ToHtmlString();
             Assert.AreEqual(comparer, "<ul class=\"nav\"><li class=\"nav-header\"></li></ul>");
         }
 
@@ -38,7 +37,7 @@ namespace sushi.htmlHelpers.Test.Helpers
         public void TestNavigationItemSeparator()
         {
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
-            var comparer = SushiExtension.Sushi(htmlHelper).Navigation().AddSeparator().ToHtmlString();
+            var comparer = new Navigation().AddSeparator().ToHtmlString();
             string result="<ul class=\"nav\"><li class=\"divider\"></li></ul>";
             Assert.AreEqual(comparer, result);
             

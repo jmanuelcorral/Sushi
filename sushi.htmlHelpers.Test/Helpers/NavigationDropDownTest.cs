@@ -14,7 +14,7 @@ namespace sushi.htmlHelpers.Test.Helpers
         public void TestDefaultWithHtmlHelper()
         {
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
-            var comparer = SushiExtension.Sushi(htmlHelper).NavigationDropDown().ToString();
+            var comparer = new NavigationDropDown().ToString();
             var result = "<ul class=\"nav\">" +
                          "<li class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\"><b class=\"caret\"></b></a>" +
                          "<ul class=\"dropdown-menu\">" +

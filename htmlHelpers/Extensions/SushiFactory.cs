@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using Sushi.BlockHelper;
@@ -40,7 +41,6 @@ namespace Sushi.Extensions
             return pn;
         }
 
-        
          /// <summary>
         /// Helper that generates a new SideBar
         /// </summary>
@@ -52,28 +52,51 @@ namespace Sushi.Extensions
             return sd;
         }
                 
-
+        /// <summary>
+        /// Helper that generates a new Layout
+        /// </summary>
+        /// <returns></returns>
         public Layout Layout()
         {
             var ly = new Layout(viewContext);
             return ly;
         }
 
+        /// <summary>
+        /// Helper that generates a new Layout, It can be invoked by Using statement, Implements IDisposable Interface
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="size"></param>
+        /// <returns></returns>
         public IDisposable BeginLayout(LayoutType type, GridSize size)
         {
             return BeginBlock(type, size);
         }
 
+        /// <summary>
+        /// Helper that generates a new Layout, It can be invoked by Using statement, Implements IDisposable Interface
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public IDisposable BeginLayout(LayoutType type)
         {
             return BeginBlock(type);
         }
 
+        /// <summary>
+        /// Helper that generates a new Layout, It can be invoked by Using statement, Implements IDisposable Interface
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
         public IDisposable BeginLayout(GridSize size)
         {
             return BeginBlock(size);
         }
-
+        /// <summary>
+        /// Helper that generates a new html > div, using layout class and grid sizes, It can be invoked by Using statement, Implements IDisposable Interface
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public IDisposable BeginBlock(LayoutType type)
         {
             var writer = this.viewContext.Writer;
@@ -82,7 +105,11 @@ namespace Sushi.Extensions
             writer.Write(tag.ToString(TagRenderMode.StartTag));
             return new Block(writer);
         }
-
+        /// <summary>
+        /// Helper that generates a new html > div, using layout class and grid sizes, It can be invoked by Using statement, Implements IDisposable Interface
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
         public IDisposable BeginBlock(GridSize size)
         {
             var writer = this.viewContext.Writer;
@@ -92,6 +119,12 @@ namespace Sushi.Extensions
             return new Block(writer);
         }
 
+        /// <summary>
+        /// Helper that generates a new html > div, using layout class and grid sizes, It can be invoked by Using statement, Implements IDisposable Interface
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="size"></param>
+        /// <returns></returns>
         public IDisposable BeginBlock(LayoutType type, GridSize size)
         {
             var writer = this.viewContext.Writer;
@@ -102,61 +135,43 @@ namespace Sushi.Extensions
             return new Block(writer);
         }
 
+        /// <summary>
+        /// Helper that generates a new html > div, using layout class and grid sizes
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
         public Layout Block(GridSize size)
         {
             var ly = new Layout(viewContext, size);
             return ly;
         }
 
+        /// <summary>
+        /// Helper that generates a Button Group
+        /// </summary>
+        /// <returns></returns>
         public ButtonGroup ButtonGroup()
         {
             var bg = new ButtonGroup(viewContext);
             return bg;
         }
         
-
+        /// <summary>
+        /// Helper that generates a Link 
+        /// </summary>
+        /// <returns></returns>
         public Link Link()
         {
             var mnu = new Link(this.viewContext);
             return mnu;
         }
 
-        public Navigation Navigation()
-        {
-            var mnu = new Navigation(this.viewContext);
-            return mnu;
-        }
-
-        //public Brand Brand()
-        //{
-        //    var brand = new Brand(this.viewContext);
-        //    return brand;
-        //}
-
-        public NavigationItem NavigationItem()
-        {
-            var mnu = new NavigationItem(this.viewContext);
-            return mnu;
-        }
-
-        public NavigationItemHeader NavigationItemHeader()
-        {
-            var mnu = new NavigationItemHeader(this.viewContext);
-            return mnu;
-        }
-
-        public NavigationDropDown NavigationDropDown()
-        {
-            var mnu = new NavigationDropDown(viewContext);
-            return mnu;
-        }
-
-        public DropDown DropDown()
-        {
-            var ddp = new DropDown(viewContext);
-            return ddp;
-        }
-
+        /// <summary>
+        /// Html Helper that generates a form field
+        /// </summary>
+        /// <typeparam name="TProperty"></typeparam>
+        /// <param name="expression"></param>
+        /// <returns></returns>
         public Field Field<TProperty>(Expression<Func<TModel, TProperty>> expression)
         {
             ModelMetadata modelMetadata = ModelMetadata.FromLambdaExpression<TModel, TProperty>(expression, new ViewDataDictionary <TModel>());
@@ -171,27 +186,37 @@ namespace Sushi.Extensions
             return fld;
         }
 
+        /// <summary>
+        /// Html Helper that generates a Html Table
+        /// </summary>
+        /// <returns></returns>
+        public Grid Grid<TProperty>(Expression<Func<TModel, TProperty>> expression)
+        {
+            ModelMetadata modelMetadata = ModelMetadata.FromLambdaExpression<TModel, TProperty>(expression, new ViewDataDictionary<TModel>());
+            var grd = new Grid(this.viewContext);
+            grd.SetELements((IList)modelMetadata.Model);
+            return grd;
+        }
+
+        /// <summary>
+        /// Html Helper that generates a NavBar 
+        /// </summary>
+        /// <returns></returns>
         public Menu Menu()
         {
             var mnu = new Menu(this.viewContext);
             return mnu;
         }
 
-        public SearchBox MenuSearchBoxItem()
-        {
-            var mnu = new SearchBox(this.viewContext);
-            return mnu;
-        }
        
-        public Grid Grid()
-        {
-            var grd = new Grid(this.viewContext);
-            return grd;
-        }
 
-      public SushiFactory(ViewContext view)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="view"></param>
+        public SushiFactory(ViewContext view)
         {
-          viewContext = view;
+            viewContext = view;
         }
          
     }
@@ -220,13 +245,6 @@ namespace Sushi.Extensions
             return pn;
         }
 
-        
-        public SearchBox MenuSearchBoxItem()
-        {
-            var mnu = new SearchBox(this.viewContext);
-            return mnu;
-        }
-
         public ButtonGroup ButtonGroup()
         {
             var bg = new ButtonGroup(viewContext);
@@ -239,43 +257,7 @@ namespace Sushi.Extensions
             var mnu = new Link(this.viewContext);
             return mnu;
         }
-
-        public Navigation Navigation()
-        {
-            var mnu = new Navigation(this.viewContext);
-            return mnu;
-        }
-
-        //public Brand Brand()
-        //{
-        //    var brand = new Brand(this.viewContext);
-        //    return brand;
-        //}
-
-        public NavigationItem NavigationItem()
-        {
-            var mnu = new NavigationItem(this.viewContext);
-            return mnu;
-        }
-
-        public NavigationItemHeader NavigationItemHeader()
-        {
-            var mnu = new NavigationItemHeader(this.viewContext);
-            return mnu;
-        }
-
-        public NavigationDropDown NavigationDropDown()
-        {
-            var mnu = new NavigationDropDown(viewContext);
-            return mnu;
-        }
-
-        public DropDown DropDown()
-        {
-            var ddp = new DropDown(viewContext);
-            return ddp;
-        }
-
+   
         /// <summary>
         /// Helper that generates a new SideBar
         /// </summary>
@@ -353,13 +335,13 @@ namespace Sushi.Extensions
             var mnu = new Menu(this.viewContext);
             return mnu;
         }
-
+        /*
         public Link MenuItem()
         {
             var mnu = new Link(this.viewContext);
             return mnu;
         }
-
+        */
         public Grid Grid()
         {
             var grd = new Grid(this.viewContext);

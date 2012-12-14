@@ -5,7 +5,7 @@ using Sushi.Extensions;
 
 namespace sushi.htmlHelpers.Test.Helpers
 {
-     [TestFixture]
+    [TestFixture]
     public class ButtonGroupTest
     {
          [Test]

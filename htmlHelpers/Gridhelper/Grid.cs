@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using Sushi.Enums;
 using Sushi.Html;
 
@@ -17,6 +16,12 @@ namespace Sushi.Gridhelper
         public Grid Bind(IList elements)
         {
             this.Component.Items = elements;
+            return this;
+        }
+
+        public Grid SetELements(IList Elements)
+        {
+            this.Component.Items = Elements;
             return this;
         }
 
@@ -70,7 +75,7 @@ namespace Sushi.Gridhelper
             }
             else
             {
-                if (this.Component.Items.Count > 0)
+                if (this.Component.Items !=null &&  this.Component.Items.Count > 0)
                 {
                     Type objtype = this.Component.Items[0].GetType();
                     foreach (var column in objtype.GetProperties())
@@ -88,18 +93,20 @@ namespace Sushi.Gridhelper
         public String BuildBody()
         {
             TagBuilder tbody = new TagBuilder("tbody");
-            
-            foreach (var element in this.Component.Items)
+            if (this.Component.Items != null)
             {
-                Type objType = element.GetType();
-                TagBuilder tr = new TagBuilder("tr");
-                foreach (var property in objType.GetProperties())
+                foreach (var element in this.Component.Items)
                 {
-                 TagBuilder td = new TagBuilder("td");
-                    td.InnerHtml = property.GetValue(element,null).ToString();
-                    tr.InnerHtml += td.ToString(TagRenderMode.Normal);
+                    Type objType = element.GetType();
+                    TagBuilder tr = new TagBuilder("tr");
+                    foreach (var property in objType.GetProperties())
+                    {
+                        TagBuilder td = new TagBuilder("td");
+                        td.InnerHtml = property.GetValue(element, null).ToString();
+                        tr.InnerHtml += td.ToString(TagRenderMode.Normal);
+                    }
+                    tbody.InnerHtml += tr.ToString(TagRenderMode.Normal);
                 }
-                tbody.InnerHtml += tr.ToString(TagRenderMode.Normal);
             }
             return tbody.ToString(TagRenderMode.Normal);
         }
