@@ -194,7 +194,12 @@ namespace Sushi.Extensions
         public Grid<TProperty> Grid<TProperty>(Expression<Func<TModel, TProperty>> expression)
         {
             ModelMetadata modelMetadata =ModelMetadata.FromLambdaExpression(expression, new ViewDataDictionary<TModel>(this.viewContext.ViewData));
+<<<<<<< HEAD
             var grd = new Grid<TProperty>(this.viewContext);
+=======
+            var grd = new Grid(this.viewContext);
+            grd.Bind((IList)this.viewContext.ViewData.Model);
+>>>>>>> ce6d4d0e021ad935a892428c81cdb5d760407374
             return grd;
         }
 

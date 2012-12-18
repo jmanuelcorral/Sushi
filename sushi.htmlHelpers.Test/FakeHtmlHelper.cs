@@ -56,6 +56,7 @@ namespace sushi.htmlHelpers.Test
             return dict;
         }
 
+<<<<<<< HEAD
         public static void CreateStronglyTypedFakeViewDataDictionary(Person person)
         {
             vDD = new ViewDataDictionary<Person>(person);
@@ -65,6 +66,16 @@ namespace sushi.htmlHelpers.Test
         {
             CreateStronglyTypedFakeViewDataDictionary(new Person());
             //Create mockViewContext
+=======
+        public static void CreateStronglyTypedFakeViewDataDictionary(List<Person> people)
+        {
+            vDD = new ViewDataDictionary<List<Person>>(people);
+        }
+
+        public static HtmlHelper<List<Person>> CreateStronglyTypedHtmlHelper()
+        {
+           //Create mockViewContext
+>>>>>>> ce6d4d0e021ad935a892428c81cdb5d760407374
             Elements = new Hashtable();
             var mockViewContext = new Mock<ViewContext>(
                 new ControllerContext(
@@ -78,6 +89,7 @@ namespace sushi.htmlHelpers.Test
             //We must initialize Writer Object 
             mockViewContext.Setup(r => r.Writer.Write(It.IsAny<string>())).Callback((string s) => ResponseText += s);
             mockViewContext.Setup(r => r.HttpContext.Items).Returns(Elements);
+            
 
 
             //DataContainer (used for StronglyTyped purposes)
@@ -85,7 +97,11 @@ namespace sushi.htmlHelpers.Test
             mockViewDataContainer.Setup(r => r.ViewData).Returns(vDD);
             mockViewContext.Setup(r => r.ViewData).Returns(vDD);
 
+<<<<<<< HEAD
             return new HtmlHelper<Person>(mockViewContext.Object,
+=======
+            return new HtmlHelper<List<Person>> (mockViewContext.Object,
+>>>>>>> ce6d4d0e021ad935a892428c81cdb5d760407374
                                   mockViewDataContainer.Object);
         }
         
