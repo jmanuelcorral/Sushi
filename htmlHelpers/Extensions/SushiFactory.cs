@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using Sushi.BlockHelper;
@@ -190,11 +191,10 @@ namespace Sushi.Extensions
         /// Html Helper that generates a Html Table
         /// </summary>
         /// <returns></returns>
-        public Grid Grid<TProperty>(Expression<Func<TModel, TProperty>> expression)
+        public Grid<TProperty> Grid<TProperty>(Expression<Func<TModel, TProperty>> expression)
         {
-            ModelMetadata modelMetadata = ModelMetadata.FromLambdaExpression<TModel, TProperty>(expression, new ViewDataDictionary<TModel>());
-            var grd = new Grid(this.viewContext);
-            grd.SetELements((IList)modelMetadata.Model);
+            ModelMetadata modelMetadata =ModelMetadata.FromLambdaExpression(expression, new ViewDataDictionary<TModel>(this.viewContext.ViewData));
+            var grd = new Grid<TProperty>(this.viewContext);
             return grd;
         }
 
@@ -342,11 +342,11 @@ namespace Sushi.Extensions
             return mnu;
         }
         */
-        public Grid Grid()
-        {
-            var grd = new Grid(this.viewContext);
-            return grd;
-        }
+        //public Grid<TProperty> Grid()
+        //{
+        //    var grd = new Grid(this.viewContext);
+        //    return grd;
+        //}
 
         /// <summary>
         /// Constructor

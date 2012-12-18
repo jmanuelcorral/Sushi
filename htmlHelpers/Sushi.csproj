@@ -72,6 +72,8 @@
     <Compile Include="Enums\Layout.cs" />
     <Compile Include="Enums\Menu.cs" />
     <Compile Include="Enums\Nav.cs" />
+    <Compile Include="Extensions\SushiPagedList.cs" />
+    <Compile Include="Gridhelper\GridPagination.cs" />
     <Compile Include="FieldHelper\Field.cs" />
     <Compile Include="FieldHelper\FieldSkin.cs" />
     <Compile Include="FieldHelper\SearchBoxSkin.cs" />
@@ -80,6 +82,7 @@
     <Compile Include="Gridhelper\Grid.cs" />
     <Compile Include="Gridhelper\GridColumn.cs" />
     <Compile Include="Gridhelper\GridComponent.cs" />
+    <Compile Include="Gridhelper\GridFilter.cs" />
     <Compile Include="Gridhelper\GridSkin.cs" />
     <Compile Include="IconHelper\Icon.cs" />
     <Compile Include="IconHelper\IconComponent.cs" />
@@ -87,6 +90,7 @@
     <Compile Include="InputHelper\Input.cs" />
     <Compile Include="ISushiComponentBuilder.cs" />
     <Compile Include="ISushiContainer.cs" />
+    <Compile Include="ISushiPagedList.cs" />
     <Compile Include="ISushiSkin.cs" />
     <Compile Include="ISushiSkinnable.cs" />
     <Compile Include="LabelHelper\LabelComponent.cs" />

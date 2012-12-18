@@ -2,65 +2,75 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 using Sushi.Enums;
 using Sushi.Html;
+using System.Linq;
 
 namespace Sushi.Gridhelper
 {
-    public class Grid : ISushiComponentBuilder
+    public class Grid<T> : ISushiComponentBuilder
     {
         public ViewContext ViewContext { get; private set; }
-        private GridComponent Component { get; set; }
+        private GridComponent<T> Component { get; set; }
         
-        public Grid Bind(IList elements)
+        public Grid<T> Bind(IList elements)
         {
-            this.Component.Items = elements;
+            this.Component.Items = new List<T>();
+            foreach (var element in elements)
+            {
+                this.Component.Items.Add((T)element);
+            }
             return this;
         }
 
-        public Grid SetELements(IList Elements)
+        public Grid<T> Columns(List<GridColumn> columns)
         {
-            this.Component.Items = Elements;
+            this.Component.Columns = columns;
             return this;
         }
 
-        public Grid AddColumn(GridColumn gridColumn)
+        public Grid<T> AddColumn(GridColumn gridColumn)
         {
             this.Component.Columns.Add(gridColumn);
             return this;
         }
 
-        public Grid SetStyles(List<GridStyle> styles)
+        public Grid<T> Styles(List<GridStyle> styles)
         {
             this.Component.Style = styles;
             return this;
         }
 
-        public Grid AddStyle(GridStyle style)
+        public Grid<T> AddStyle(GridStyle style)
         {
             this.Component.Style.Add(style);
             return this;
         }
 
-        public Grid SetSize(GridSize size)
+        public Grid<T> Size(GridSize size)
         {
             this.Component.Size = size;
+            return this;
+        }
+
+        public Grid<T> Filter(GridFilter filter)
+        {
+            this.Component.Filter = filter;
             return this;
         }
 
         public Grid(ViewContext viewContext)
         {
             this.ViewContext = viewContext;
-            this.Component = new GridComponent();
+            this.Component = new GridComponent<T>();
             this.Component.HtmlProperties = new HtmlProperties(viewContext, this.Component.GetType());
             this.Component.Columns = new List<GridColumn>();
             this.Component.Style = new List<GridStyle>();
-            this.Component.Action = "#EmptyValue";
+            this.Component.Action = "";
             this.Component.Skin = new GridSkin();
         }
 
-        public String BuildHeader()
+        internal String BuildHeader()
         {
             TagBuilder thead = new TagBuilder("thead");
             TagBuilder tr = new TagBuilder("tr");
@@ -90,12 +100,15 @@ namespace Sushi.Gridhelper
             return thead.ToString(TagRenderMode.Normal);
         }
 
-        public String BuildBody()
+        internal String BuildBody()
         {
             TagBuilder tbody = new TagBuilder("tbody");
-            if (this.Component.Items != null)
+            var elements = this.Component.Items; 
+            if (this.Component.Filter != null) 
+                     elements = ExecuteFilter();
+            if (elements != null)
             {
-                foreach (var element in this.Component.Items)
+                foreach (var element in elements)
                 {
                     Type objType = element.GetType();
                     TagBuilder tr = new TagBuilder("tr");
@@ -111,7 +124,7 @@ namespace Sushi.Gridhelper
             return tbody.ToString(TagRenderMode.Normal);
         }
 
-        public String BuildTable()
+        internal String BuildTable()
         {
             TagBuilder table = new TagBuilder("table");
             String cssClass = setCSSClasses();
@@ -119,6 +132,23 @@ namespace Sushi.Gridhelper
             table.InnerHtml = BuildHeader() + BuildBody(); //+ BuildFooter();
             return table.ToString(TagRenderMode.Normal);
         }
+
+        private List<T> ExecuteFilter()
+        {
+            if (this.Component.PaginationOptions == null && this.Component.Filter.Pagination)
+            {
+                this.Component.PaginationOptions = new GridPagination();
+                this.Component.PaginationOptions.TotalPages = 0;
+                this.Component.PaginationOptions.TotalRegisters = this.Component.Items.Count;
+                this.Component.PaginationOptions.CurrentPage = 0;
+                this.Component.PaginationOptions.isFirstpage = true;
+                var filtered = this.Component.Items.Skip(this.Component.PaginationOptions.CurrentPage * this.Component.Filter.ResultsPerPage).Take(this.Component.Filter.ResultsPerPage);
+                return filtered.ToList();
+            }
+            else return this.Component.Items;
+            
+        }
+
 
         private String setCSSClasses()
         {
@@ -128,7 +158,7 @@ namespace Sushi.Gridhelper
                 switch (_style)
                 {
                     case GridStyle.Default:
-                        ResultStyle += String.Format("{0} ",  this.Component.Skin.CssBaseclass);
+                        ResultStyle += String.Format("{0} ", ((GridSkin)this.Component.Skin).CssBaseclass);
                         break;
                     case GridStyle.Condensed:
                         ResultStyle += String.Format("{0} ", ((GridSkin) this.Component.Skin).CssCondensed);
@@ -141,7 +171,7 @@ namespace Sushi.Gridhelper
                         break;
                 }
             }
-            ResultStyle += String.Format("{0} ",Resolvers.GridResolver.ResolveSize(this.Component.Size));
+            ResultStyle += String.Format("{0}", Resolvers.GridResolver.ResolveSize(this.Component.Size));
             return ResultStyle;
         }
 

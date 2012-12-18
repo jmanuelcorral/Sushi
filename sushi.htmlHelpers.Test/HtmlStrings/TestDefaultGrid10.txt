@@ -1,0 +1,94 @@
+﻿<table class="span1">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>FirstSurname</th>
+			<th>SecondSurname</th>
+			<th>BornDate</th>
+			<th>Register</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1</td>
+			<td>Jose Manuel</td>
+			<td>La Mar</td>
+			<td>De Majo</td>
+			<td>20/09/1983 0:00:00</td>
+			<td>17/11/2012 14:06:38</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>Victor</td>
+			<td>Pez</td>
+			<td>Volador</td>
+			<td>22/05/1982 0:00:00</td>
+			<td>17/10/2012 14:06:38</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>Jordi</td>
+			<td>Tigre</td>
+			<td>Fiero</td>
+			<td>21/12/1981 0:00:00</td>
+			<td>17/02/2012 14:06:38</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>David</td>
+			<td>Leon</td>
+			<td>Peludo</td>
+			<td>30/01/1977 0:00:00</td>
+			<td>17/11/2002 14:06:38</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>Marc</td>
+			<td>Jirafa</td>
+			<td>Cuellolargo</td>
+			<td>01/06/1975 0:00:00</td>
+			<td>17/07/1997 14:06:38</td>
+		</tr>
+		<tr>
+			<td>6</td>
+			<td>Juan</td>
+			<td>Avion</td>
+			<td>Pesado</td>
+			<td>12/05/1956 0:00:00</td>
+			<td>17/01/1997 14:06:38</td>
+		</tr>
+		<tr>
+			<td>7</td>
+			<td>Maria</td>
+			<td>Barco</td>
+			<td>Ligero</td>
+			<td>23/06/1963 0:00:00</td>
+			<td>17/09/2008 14:06:38</td>
+		</tr>
+		<tr>
+			<td>8</td>
+			<td>Andres</td>
+			<td>Tren</td>
+			<td>Lento</td>
+			<td>14/11/1988 0:00:00</td>
+			<td>17/09/2008 14:06:38</td>
+		</tr>
+		<tr>
+			<td>9</td>
+			<td>Jose Luis</td>
+			<td>Metro</td>
+			<td>Azul</td>
+			<td>12/08/1995 0:00:00</td>
+			<td>17/11/2012 14:06:38</td>
+		</tr>
+		<tr>
+			<td>10</td>
+			<td>Ivan</td>
+			<td>Zoo</td>
+			<td>Abandonado</td>
+			<td>19/05/2000 0:00:00</td>
+			<td>17/11/2012 14:06:38</td>
+		</tr>
+	</tbody>
+</table>
