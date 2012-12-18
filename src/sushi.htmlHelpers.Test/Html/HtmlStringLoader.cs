@@ -30,7 +30,7 @@ namespace sushi.htmlHelpers.Test.Html
 
         public static String GetHtmlStringResource(TextLoad loader)
         {
-            return System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "..\\..\\..\\HtmlStrings\\" + Resolve(loader)).Replace("\t","").Replace("\n","").Replace("\r", "");
+            return System.IO.File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory + "\\..\\..\\src\\sushi.htmlHelpers.Test\\HtmlStrings\\" + Resolve(loader)).Replace("\t", "").Replace("\n", "").Replace("\r", "");
         }
     }
 }
