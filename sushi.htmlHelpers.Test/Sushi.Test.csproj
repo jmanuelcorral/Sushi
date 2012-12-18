@@ -65,13 +65,12 @@
     <Compile Include="Helpers\NavigationTest.cs" />
     <Compile Include="Helpers\PanelTest.cs" />
     <Compile Include="Helpers\MenuTest.cs" />
+    <Compile Include="Html\HtmlStringLoader.cs" />
     <Compile Include="Model\ModelFactories.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Html\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\htmlHelpers\Sushi.csproj">
       <Project>{8F37DEF0-6E9F-48E6-A4CE-81D8F8E81DA7}</Project>
@@ -80,6 +79,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="HtmlStrings\TestDefaultGrid10.txt" />
+    <Content Include="HtmlStrings\TestDefaultGrid20.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

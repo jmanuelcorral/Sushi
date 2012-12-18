@@ -8,6 +8,5 @@ namespace Sushi.Gridhelper
     public class GridColumn
     {
         public String Title { get; set; }
-
     }
 }

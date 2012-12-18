@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 using Sushi.Enums;
 using Sushi.Html;
+using System.Linq;
 
 namespace Sushi.Gridhelper
 {
@@ -19,9 +19,9 @@ namespace Sushi.Gridhelper
             return this;
         }
 
-        public Grid SetELements(IList Elements)
+        public Grid Columns(List<GridColumn> columns)
         {
-            this.Component.Items = Elements;
+            this.Component.Columns = columns;
             return this;
         }
 
@@ -31,7 +31,7 @@ namespace Sushi.Gridhelper
             return this;
         }
 
-        public Grid SetStyles(List<GridStyle> styles)
+        public Grid Styles(List<GridStyle> styles)
         {
             this.Component.Style = styles;
             return this;
@@ -43,9 +43,15 @@ namespace Sushi.Gridhelper
             return this;
         }
 
-        public Grid SetSize(GridSize size)
+        public Grid Size(GridSize size)
         {
             this.Component.Size = size;
+            return this;
+        }
+
+        public Grid Filter(GridFilter filter)
+        {
+            this.Component.Filter = filter;
             return this;
         }
 
@@ -56,11 +62,11 @@ namespace Sushi.Gridhelper
             this.Component.HtmlProperties = new HtmlProperties(viewContext, this.Component.GetType());
             this.Component.Columns = new List<GridColumn>();
             this.Component.Style = new List<GridStyle>();
-            this.Component.Action = "#EmptyValue";
+            this.Component.Action = "";
             this.Component.Skin = new GridSkin();
         }
 
-        public String BuildHeader()
+        internal String BuildHeader()
         {
             TagBuilder thead = new TagBuilder("thead");
             TagBuilder tr = new TagBuilder("tr");
@@ -90,12 +96,15 @@ namespace Sushi.Gridhelper
             return thead.ToString(TagRenderMode.Normal);
         }
 
-        public String BuildBody()
+        internal String BuildBody()
         {
             TagBuilder tbody = new TagBuilder("tbody");
-            if (this.Component.Items != null)
+            var elements = this.Component.Items; 
+            if (this.Component.Filter != null) 
+                     elements = ExecuteFilter();
+            if (elements != null)
             {
-                foreach (var element in this.Component.Items)
+                foreach (var element in elements)
                 {
                     Type objType = element.GetType();
                     TagBuilder tr = new TagBuilder("tr");
@@ -111,7 +120,7 @@ namespace Sushi.Gridhelper
             return tbody.ToString(TagRenderMode.Normal);
         }
 
-        public String BuildTable()
+        internal String BuildTable()
         {
             TagBuilder table = new TagBuilder("table");
             String cssClass = setCSSClasses();
@@ -119,6 +128,22 @@ namespace Sushi.Gridhelper
             table.InnerHtml = BuildHeader() + BuildBody(); //+ BuildFooter();
             return table.ToString(TagRenderMode.Normal);
         }
+
+        private IList ExecuteFilter()
+        {
+            //if (this.Component.PaginationOptions == null && this.Component.Filter.Pagination)
+            //{
+            //    this.Component.PaginationOptions = new GridPagination();
+            //    this.Component.PaginationOptions.TotalPages = 0;
+            //    this.Component.PaginationOptions.TotalRegisters = this.Component.Items.Count;
+            //    this.Component.PaginationOptions.CurrentPage = 1;
+            //    this.Component.PaginationOptions.isFirstpage = true;
+            //}
+            //var filtered = this.Component.Items.Skip(this.Component.PaginationOptions.CurrentPage * this.Component.Filter.ResultsPerPage).Take(this.Component.Filter.ResultsPerPage);
+            //return (IList)filtered;
+            return this.Component.Items;
+        }
+
 
         private String setCSSClasses()
         {
@@ -128,7 +153,7 @@ namespace Sushi.Gridhelper
                 switch (_style)
                 {
                     case GridStyle.Default:
-                        ResultStyle += String.Format("{0} ",  this.Component.Skin.CssBaseclass);
+                        ResultStyle += String.Format("{0} ", ((GridSkin)this.Component.Skin).CssBaseclass);
                         break;
                     case GridStyle.Condensed:
                         ResultStyle += String.Format("{0} ", ((GridSkin) this.Component.Skin).CssCondensed);
@@ -141,7 +166,7 @@ namespace Sushi.Gridhelper
                         break;
                 }
             }
-            ResultStyle += String.Format("{0} ",Resolvers.GridResolver.ResolveSize(this.Component.Size));
+            ResultStyle += String.Format("{0}", Resolvers.GridResolver.ResolveSize(this.Component.Size));
             return ResultStyle;
         }
 

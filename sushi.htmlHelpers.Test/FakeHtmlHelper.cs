@@ -16,6 +16,8 @@ namespace sushi.htmlHelpers.Test
     {
         public static string ResponseText { get; set; }
         public static Hashtable Elements { get; set; }
+        public static ViewDataDictionary vDD { get; set; }
+        
         
         /// <summary>
         /// Creates a Fake HtmlHelper for testing purposes
@@ -54,11 +56,14 @@ namespace sushi.htmlHelpers.Test
             return dict;
         }
 
-        public static HtmlHelper<List<Person>> CreateHtmlHelper(List<Person> fakeModel)
+        public static void CreateStronglyTypedFakeViewDataDictionary(List<Person> people)
         {
-            ViewDataDictionary vd = new ViewDataDictionary(fakeModel);
-            vd.Model = fakeModel;
-            //Create mockViewContext
+            vDD = new ViewDataDictionary<List<Person>>(people);
+        }
+
+        public static HtmlHelper<List<Person>> CreateStronglyTypedHtmlHelper()
+        {
+           //Create mockViewContext
             Elements = new Hashtable();
             var mockViewContext = new Mock<ViewContext>(
                 new ControllerContext(
@@ -66,17 +71,19 @@ namespace sushi.htmlHelpers.Test
                     new RouteData(),
                     new Mock<ControllerBase>().Object),
                 new Mock<IView>().Object,
-                vd,
+                vDD,
                 new TempDataDictionary(),
                 new Mock<TextWriter>().Object);
             //We must initialize Writer Object 
             mockViewContext.Setup(r => r.Writer.Write(It.IsAny<string>())).Callback((string s) => ResponseText += s);
             mockViewContext.Setup(r => r.HttpContext.Items).Returns(Elements);
+            
 
             //DataContainer (used for StronglyTyped purposes)
             var mockViewDataContainer = new Mock<IViewDataContainer>();
-            mockViewDataContainer.Setup(v => v.ViewData)
-                .Returns(vd);
+            mockViewDataContainer.Setup(r => r.ViewData).Returns(vDD);
+            mockViewContext.Setup(r => r.ViewData).Returns(vDD);
+
             return new HtmlHelper<List<Person>> (mockViewContext.Object,
                                   mockViewDataContainer.Object);
         }

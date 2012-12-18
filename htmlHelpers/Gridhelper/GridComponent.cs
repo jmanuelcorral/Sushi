@@ -15,9 +15,11 @@ namespace Sushi.Gridhelper
         public ISushiSkin Skin { get; set; }
         public List<GridStyle> Style { get; set; }
         public GridSize Size { get; set; }
+        public GridPagination PaginationOptions { get; set; }
         public List<GridColumn> Columns { get; set; } 
         public IList Items { get; set; }
         public String Action { get; set; }
+        public GridFilter Filter { get; set; }
         #endregion
     }
 }
