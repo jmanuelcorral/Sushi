@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>SushiMVC</id>
+        <version>1.8</version>
+        <title>Sushi Library</title>
+        <authors>jmanuelcorral</authors>
+        <owners>jmanuelcorral</owners>
+        <licenseUrl>http://sushimvc.codeplex.com/license</licenseUrl>
+        <projectUrl>http://jmanuelcorral.github.com/Sushi/</projectUrl>
+        <iconUrl>http://download.codeplex.com/Download?ProjectName=sushimvc&amp;DownloadId=376534&amp;Build=18857</iconUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>Sushi is a collection of MVC Helpers that prevent the spaguetti code in your razor views of your ASP.NET MVC 3 projects. Sushi is easy to use, it prevents to write lot of html and css code for you views using a simple syntax.
+
+Sushi uses BootStrap, that means the responsive and elegant user interface is guaranteed.</description>
+        <summary />
+        <releaseNotes>Version 1.8
+----------------------
+Added a New Strongly typed Grid
+Corrected some bugs with Tests
+Refactoring
+
+Available Helpers:
+------------------------
+Button
+Menu
+Panel
+Sidebar
+Navigation
+Link
+Layouts
+Grid (experimental, alpha paging and filtering)
+
+
+For more information go to: 
+http://jmanuelcorral.github.com/Sushi/</releaseNotes>
+        <copyright>José Manuel Corral</copyright>
+        <tags>BootStrap, Sushi, HtmlHelpers, Html5, MVC, Control</tags>
+        <dependencies>
+            <dependency id="Twitter.Bootstrap" version="2.2.1" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="..\build\Release\Sushi.dll" target="lib\Sushi.dll" />
+    </files>
+</package>
