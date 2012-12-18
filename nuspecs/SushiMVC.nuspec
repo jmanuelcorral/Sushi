@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>SushiMVC</id>
-        <version>1.8</version>
+        <version>1.8.1</version>
         <title>Sushi Library</title>
         <authors>jmanuelcorral</authors>
         <owners>jmanuelcorral</owners>
@@ -10,7 +10,7 @@
         <projectUrl>http://jmanuelcorral.github.com/Sushi/</projectUrl>
         <iconUrl>http://download.codeplex.com/Download?ProjectName=sushimvc&amp;DownloadId=376534&amp;Build=18857</iconUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
-        <description>Sushi is a collection of MVC Helpers that prevent the spaguetti code in your razor views of your ASP.NET MVC 3 projects. Sushi is easy to use, it prevents to write lot of html and css code for you views using a simple syntax.
+        <description>Sushi is a collection of MVC Helpers that prevent the spaguetti code in your razor views of your ASP.NET MVC 4 projects. Sushi is easy to use, it prevents to write lot of html and css code for you views using a simple syntax.
 
 Sushi uses BootStrap, that means the responsive and elegant user interface is guaranteed.</description>
         <summary />
