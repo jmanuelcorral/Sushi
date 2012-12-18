@@ -23,11 +23,7 @@ namespace Sushi.Gridhelper
             return this;
         }
 
-<<<<<<< HEAD
-        public Grid Columns(List<GridColumn> columns)
-=======
         public Grid<T> Columns(List<GridColumn> columns)
->>>>>>> New version with a alpha Filtering(only in server)
         {
             this.Component.Columns = columns;
             return this;
@@ -39,11 +35,7 @@ namespace Sushi.Gridhelper
             return this;
         }
 
-<<<<<<< HEAD
-        public Grid Styles(List<GridStyle> styles)
-=======
         public Grid<T> Styles(List<GridStyle> styles)
->>>>>>> New version with a alpha Filtering(only in server)
         {
             this.Component.Style = styles;
             return this;
@@ -55,21 +47,14 @@ namespace Sushi.Gridhelper
             return this;
         }
 
-<<<<<<< HEAD
-        public Grid Size(GridSize size)
-=======
+
         public Grid<T> Size(GridSize size)
->>>>>>> New version with a alpha Filtering(only in server)
         {
             this.Component.Size = size;
             return this;
         }
 
-<<<<<<< HEAD
-        public Grid Filter(GridFilter filter)
-=======
         public Grid<T> Filter(GridFilter filter)
->>>>>>> New version with a alpha Filtering(only in server)
         {
             this.Component.Filter = filter;
             return this;
@@ -149,21 +134,6 @@ namespace Sushi.Gridhelper
             return table.ToString(TagRenderMode.Normal);
         }
 
-<<<<<<< HEAD
-        private IList ExecuteFilter()
-        {
-            //if (this.Component.PaginationOptions == null && this.Component.Filter.Pagination)
-            //{
-            //    this.Component.PaginationOptions = new GridPagination();
-            //    this.Component.PaginationOptions.TotalPages = 0;
-            //    this.Component.PaginationOptions.TotalRegisters = this.Component.Items.Count;
-            //    this.Component.PaginationOptions.CurrentPage = 1;
-            //    this.Component.PaginationOptions.isFirstpage = true;
-            //}
-            //var filtered = this.Component.Items.Skip(this.Component.PaginationOptions.CurrentPage * this.Component.Filter.ResultsPerPage).Take(this.Component.Filter.ResultsPerPage);
-            //return (IList)filtered;
-            return this.Component.Items;
-=======
         private List<T> ExecuteFilter()
         {
             if (this.Component.PaginationOptions == null && this.Component.Filter.Pagination)
@@ -177,8 +147,6 @@ namespace Sushi.Gridhelper
                 return filtered.ToList();
             }
             else return this.Component.Items;
-            
->>>>>>> New version with a alpha Filtering(only in server)
         }
 
 

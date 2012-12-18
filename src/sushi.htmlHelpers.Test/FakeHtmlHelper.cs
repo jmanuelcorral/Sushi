@@ -56,26 +56,21 @@ namespace sushi.htmlHelpers.Test
             return dict;
         }
 
-<<<<<<< HEAD
+
         public static void CreateStronglyTypedFakeViewDataDictionary(List<Person> people)
         {
             vDD = new ViewDataDictionary<List<Person>>(people);
         }
 
-        public static HtmlHelper<List<Person>> CreateStronglyTypedHtmlHelper()
+        public static void CreateStronglyTypedFakeViewDataDictionary(Person p)
         {
-           //Create mockViewContext
-=======
-        public static void CreateStronglyTypedFakeViewDataDictionary(Person person)
-        {
-            vDD = new ViewDataDictionary<Person>(person);
+            vDD = new ViewDataDictionary<Person>(p);
         }
 
         public static HtmlHelper<Person> CreateStronglyTypedHtmlHelper()
         {
             CreateStronglyTypedFakeViewDataDictionary(new Person());
             //Create mockViewContext
->>>>>>> New version with a alpha Filtering(only in server)
             Elements = new Hashtable();
             var mockViewContext = new Mock<ViewContext>(
                 new ControllerContext(
@@ -89,20 +84,13 @@ namespace sushi.htmlHelpers.Test
             //We must initialize Writer Object 
             mockViewContext.Setup(r => r.Writer.Write(It.IsAny<string>())).Callback((string s) => ResponseText += s);
             mockViewContext.Setup(r => r.HttpContext.Items).Returns(Elements);
-            
-
 
             //DataContainer (used for StronglyTyped purposes)
             var mockViewDataContainer = new Mock<IViewDataContainer>();
             mockViewDataContainer.Setup(r => r.ViewData).Returns(vDD);
             mockViewContext.Setup(r => r.ViewData).Returns(vDD);
-
-<<<<<<< HEAD
-            return new HtmlHelper<List<Person>> (mockViewContext.Object,
-=======
             return new HtmlHelper<Person>(mockViewContext.Object,
->>>>>>> New version with a alpha Filtering(only in server)
-                                  mockViewDataContainer.Object);
+                                mockViewDataContainer.Object);
         }
         
     }
