@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>SushiMVC</id>
-        <version>1.8.1</version>
+        <version>1.8.4</version>
         <title>Sushi Library</title>
         <authors>jmanuelcorral</authors>
         <owners>jmanuelcorral</owners>
@@ -14,11 +14,9 @@
 
 Sushi uses BootStrap, that means the responsive and elegant user interface is guaranteed.</description>
         <summary />
-        <releaseNotes>Version 1.8
+        <releaseNotes>Version 1.8.2
 ----------------------
-Added a New Strongly typed Grid
-Corrected some bugs with Tests
-Refactoring
+Grid Bugs Fixxed
 
 Available Helpers:
 ------------------------
