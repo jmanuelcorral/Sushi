@@ -83,6 +83,7 @@
   <ItemGroup>
     <Content Include="HtmlStrings\TestDefaultGrid10.txt" />
     <Content Include="HtmlStrings\TestDefaultGrid20.txt" />
+    <Content Include="HtmlStrings\TestSecondGrid10.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

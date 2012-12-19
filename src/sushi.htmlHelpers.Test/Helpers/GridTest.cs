@@ -18,7 +18,7 @@ namespace sushi.htmlHelpers.Test.Helpers
         public void TestDefault()
         {
             FakeHtmlHelper.CreateStronglyTypedFakeViewDataDictionary(new List<Person>());
-            var htmlHelper = FakeHtmlHelper.CreateStronglyTypedHtmlHelper();
+            var htmlHelper = FakeHtmlHelper.CreateStronglyTypedHtmlHelperWithCollection();
             var comparer = SushiExtension.Sushi(htmlHelper).Grid(x => x).ToHtmlString();
             Assert.AreEqual(comparer, "<table class=\"span1\"><thead><tr></tr></thead><tbody></tbody></table>");
         }
@@ -26,9 +26,9 @@ namespace sushi.htmlHelpers.Test.Helpers
         [Test]
         public void TestDefaultStronglyTyped10RecordsModel()
         {
-            var ListModel = ModelFactories.GetPeople10Collection();
-            var htmlHelper = FakeHtmlHelper.CreateStronglyTypedHtmlHelper();
-            var resultObtained = SushiExtension.Sushi(htmlHelper).Grid(x => x).Bind(ListModel).ToHtmlString();
+            FakeHtmlHelper.CreateStronglyTypedFakeViewDataDictionary(ModelFactories.GetPeople10Collection());
+            var htmlHelper = FakeHtmlHelper.CreateStronglyTypedHtmlHelperWithCollection();
+            var resultObtained = SushiExtension.Sushi(htmlHelper).Grid(x => x).Bind().ToHtmlString();
             var resultExpected = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestDefaultGrid10);
             Assert.AreEqual(resultExpected, resultObtained);
         }
@@ -36,23 +36,49 @@ namespace sushi.htmlHelpers.Test.Helpers
         [Test]
         public void TestDefault20RecordsModel()
         {
-            var ListModel = ModelFactories.GetPeople20Collection();
-            var htmlHelper = FakeHtmlHelper.CreateStronglyTypedHtmlHelper();
-            var resultObtained = SushiExtension.Sushi(htmlHelper).Grid(x => x).Bind(ListModel).ToHtmlString();
+            FakeHtmlHelper.CreateStronglyTypedFakeViewDataDictionary(ModelFactories.GetPeople20Collection());
+            var htmlHelper = FakeHtmlHelper.CreateStronglyTypedHtmlHelperWithCollection();
+            var resultObtained = SushiExtension.Sushi(htmlHelper).Grid(x => x).Bind().ToHtmlString();
             var resultExpected = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestDefaultGrid20);
             Assert.AreEqual(resultExpected, resultObtained);
         }
 
         [Test]
-        public void TestLoadStronglyTyped20RecordsModelPaginating10RecordsPerPage()
+        public void TestLoadStronglyTyped20RecordsModelPaginating10RecordsFirstPage()
         {
-            var ListModel = ModelFactories.GetPeople20Collection();
-            var htmlHelper = FakeHtmlHelper.CreateStronglyTypedHtmlHelper();
+            FakeHtmlHelper.CreateStronglyTypedFakeViewDataDictionary(ModelFactories.GetPeople20Collection());
+            var htmlHelper = FakeHtmlHelper.CreateStronglyTypedHtmlHelperWithCollection();
             var resultObtained = SushiExtension.Sushi(htmlHelper).Grid(x => x)
-                    .Bind(ListModel)
-                    .Filter(new GridFilter { Pagination = true, ResultsPerPage=10, ShowTotalResults=true })
+                    .Bind()
+                    .Filter<Person>(new GridFilter { Pagination = true, ResultsPerPage=10, ShowTotalResults=true })
                     .ToHtmlString();
             var resultExpected = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestDefaultGrid10);
+            Assert.AreEqual(resultExpected, resultObtained);
+        }
+
+        [Test]
+        public void TestLoadStronglyTyped20RecordsModelPaginating10RecordsSecondPage()
+        {
+            FakeHtmlHelper.CreateStronglyTypedFakeViewDataDictionary(ModelFactories.GetPeople20Collection());
+            var htmlHelper = FakeHtmlHelper.CreateStronglyTypedHtmlHelperWithCollection();
+            var resultObtained = SushiExtension.Sushi(htmlHelper).Grid(x => x)
+                    .Bind()
+                    .Filter<Person>(new GridFilter { Pagination = true, ResultsPerPage = 10, ShowTotalResults = true, CurrentPage = 1 })
+                    .ToHtmlString();
+            var resultExpected = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestSecondGrid10);
+            Assert.AreEqual(resultExpected, resultObtained);
+        }
+
+        [Test]
+        public void TestLoadStronglyTyped20RecordsModelWithPagination()
+        {
+            FakeHtmlHelper.CreateStronglyTypedFakeViewDataDictionary(ModelFactories.GetPeople20Collection());
+            var htmlHelper = FakeHtmlHelper.CreateStronglyTypedHtmlHelperWithCollection();
+            var resultObtained = SushiExtension.Sushi(htmlHelper).Grid(x => x)
+                    .Bind()
+                    .Filter<Person>(new GridFilter { Pagination = true, ResultsPerPage = 10, ShowTotalResults = true, CurrentPage = 1 })
+                    .ToHtmlString();
+            var resultExpected = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestSecondGrid10);
             Assert.AreEqual(resultExpected, resultObtained);
         }
     }

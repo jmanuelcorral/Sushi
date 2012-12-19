@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Web.Mvc;
 using Sushi.Enums;
 using Sushi.Html;
@@ -8,18 +9,14 @@ using System.Linq;
 
 namespace Sushi.Gridhelper
 {
-    public class Grid<T> : ISushiComponentBuilder
+    public class Grid<T> : ISushiComponentBuilder where T : IList 
     {
         public ViewContext ViewContext { get; private set; }
         private GridComponent<T> Component { get; set; }
         
-        public Grid<T> Bind(IList elements)
+        public Grid<T> Bind()
         {
-            this.Component.Items = new List<T>();
-            foreach (var element in elements)
-            {
-                this.Component.Items.Add((T)element);
-            }
+            this.Component.Items = (T)ViewContext.ViewData.Model;
             return this;
         }
 
@@ -54,9 +51,11 @@ namespace Sushi.Gridhelper
             return this;
         }
 
-        public Grid<T> Filter(GridFilter filter)
+        public Grid<T> Filter<TElement>(GridFilter filter)
         {
             this.Component.Filter = filter;
+            var elements = ExecuteFilter<TElement>();
+            this.Component.Items = (T)elements;
             return this;
         }
 
@@ -104,12 +103,9 @@ namespace Sushi.Gridhelper
         internal String BuildBody()
         {
             TagBuilder tbody = new TagBuilder("tbody");
-            var elements = this.Component.Items; 
-            if (this.Component.Filter != null) 
-                     elements = ExecuteFilter();
-            if (elements != null)
+            if (this.Component.Items != null)
             {
-                foreach (var element in elements)
+                foreach (var element in this.Component.Items)
                 {
                     Type objType = element.GetType();
                     TagBuilder tr = new TagBuilder("tr");
@@ -134,21 +130,17 @@ namespace Sushi.Gridhelper
             return table.ToString(TagRenderMode.Normal);
         }
 
-        private List<T> ExecuteFilter()
+        public  IList ExecuteFilter<TElement>()
         {
-            if (this.Component.PaginationOptions == null && this.Component.Filter.Pagination)
-            {
-                this.Component.PaginationOptions = new GridPagination();
-                this.Component.PaginationOptions.TotalPages = 0;
-                this.Component.PaginationOptions.TotalRegisters = this.Component.Items.Count;
-                this.Component.PaginationOptions.CurrentPage = 0;
-                this.Component.PaginationOptions.isFirstpage = true;
-                var filtered = this.Component.Items.Skip(this.Component.PaginationOptions.CurrentPage * this.Component.Filter.ResultsPerPage).Take(this.Component.Filter.ResultsPerPage);
-                return filtered.ToList();
-            }
-            else return this.Component.Items;
+            this.Component.PaginationOptions = new GridPagination();
+            this.Component.PaginationOptions.TotalPages = 0;
+            this.Component.PaginationOptions.TotalRegisters = this.Component.Items.Count;
+            this.Component.PaginationOptions.CurrentPage = (this.Component.Filter.CurrentPage == null)? 0 : this.Component.Filter.CurrentPage;
+            this.Component.PaginationOptions.isFirstpage = true;
+            var elements = new List<TElement>((IEnumerable<TElement>)this.Component.Items);
+            var filtered = elements.Skip(this.Component.PaginationOptions.CurrentPage * this.Component.Filter.ResultsPerPage).Take(this.Component.Filter.ResultsPerPage);
+            return filtered.ToList();
         }
-
 
         private String setCSSClasses()
         {

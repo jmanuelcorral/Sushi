@@ -9,7 +9,8 @@ namespace sushi.htmlHelpers.Test.Html
     public enum TextLoad
     {
         TestDefaultGrid10,
-        TestDefaultGrid20
+        TestDefaultGrid20,
+        TestSecondGrid10
     }
 
     public static class HtmlStringLoader
@@ -23,6 +24,8 @@ namespace sushi.htmlHelpers.Test.Html
                         return "TestDefaultGrid10.txt";
                     case TextLoad.TestDefaultGrid20:
                         return "TestDefaultGrid20.txt";
+                    case TextLoad.TestSecondGrid10:
+                        return "TestSecondGrid10.txt";
                     default:
                     return "";
             }

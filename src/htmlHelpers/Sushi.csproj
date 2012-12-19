@@ -90,6 +90,7 @@
     <Compile Include="InputHelper\Input.cs" />
     <Compile Include="ISushiComponentBuilder.cs" />
     <Compile Include="ISushiContainer.cs" />
+    <Compile Include="ISushiFilter.cs" />
     <Compile Include="ISushiPagedList.cs" />
     <Compile Include="ISushiSkin.cs" />
     <Compile Include="ISushiSkinnable.cs" />

@@ -67,7 +67,7 @@ namespace sushi.htmlHelpers.Test
             vDD = new ViewDataDictionary<Person>(p);
         }
 
-        public static HtmlHelper<Person> CreateStronglyTypedHtmlHelper()
+        public static HtmlHelper<Person> CreateStronglyTypedHtmlHelperWithPerson()
         {
             CreateStronglyTypedFakeViewDataDictionary(new Person());
             //Create mockViewContext
@@ -90,6 +90,32 @@ namespace sushi.htmlHelpers.Test
             mockViewDataContainer.Setup(r => r.ViewData).Returns(vDD);
             mockViewContext.Setup(r => r.ViewData).Returns(vDD);
             return new HtmlHelper<Person>(mockViewContext.Object,
+                                mockViewDataContainer.Object);
+        }
+
+        public static HtmlHelper<List<Person>> CreateStronglyTypedHtmlHelperWithCollection()
+        {
+            //CreateStronglyTypedFakeViewDataDictionary(new Person());
+            //Create mockViewContext
+            Elements = new Hashtable();
+            var mockViewContext = new Mock<ViewContext>(
+                new ControllerContext(
+                    new Mock<HttpContextBase>().Object,
+                    new RouteData(),
+                    new Mock<ControllerBase>().Object),
+                new Mock<IView>().Object,
+                vDD,
+                new TempDataDictionary(),
+                new Mock<TextWriter>().Object);
+            //We must initialize Writer Object 
+            mockViewContext.Setup(r => r.Writer.Write(It.IsAny<string>())).Callback((string s) => ResponseText += s);
+            mockViewContext.Setup(r => r.HttpContext.Items).Returns(Elements);
+
+            //DataContainer (used for StronglyTyped purposes)
+            var mockViewDataContainer = new Mock<IViewDataContainer>();
+            mockViewDataContainer.Setup(r => r.ViewData).Returns(vDD);
+            mockViewContext.Setup(r => r.ViewData).Returns(vDD);
+            return new HtmlHelper<List<Person>>(mockViewContext.Object,
                                 mockViewDataContainer.Object);
         }
         

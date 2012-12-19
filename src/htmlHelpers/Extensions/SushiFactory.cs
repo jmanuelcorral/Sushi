@@ -19,7 +19,9 @@ using Sushi.SideBarHelper;
 
 namespace Sushi.Extensions
 {
-    public class SushiFactory<TModel>
+   
+   
+   public class SushiFactory<TModel>
     {
         public ViewContext viewContext { get; private set; }
 
@@ -191,12 +193,14 @@ namespace Sushi.Extensions
         /// Html Helper that generates a Html Table
         /// </summary>
         /// <returns></returns>
-        public Grid<TProperty> Grid<TProperty>(Expression<Func<TModel, TProperty>> expression)
+        public Grid<TProperty> Grid<TProperty>(Expression<Func<TModel, TProperty>> expression) where TProperty:IList
         {
-            ModelMetadata modelMetadata =ModelMetadata.FromLambdaExpression(expression, new ViewDataDictionary<TModel>(this.viewContext.ViewData));
+            ModelMetadata modelMetadata = ModelMetadata.FromLambdaExpression(expression, new ViewDataDictionary<TModel>(this.viewContext.ViewData));
             var grd = new Grid<TProperty>(this.viewContext);
             return grd;
         }
+
+        
 
         /// <summary>
         /// Html Helper that generates a NavBar 

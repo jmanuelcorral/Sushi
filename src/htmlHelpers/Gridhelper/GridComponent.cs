@@ -8,7 +8,7 @@ using Sushi.Html;
 
 namespace Sushi.Gridhelper
 {
-    public class GridComponent<T>:ISushiComponent, ISushiSkinnable
+    public class GridComponent<T> : ISushiComponent, ISushiSkinnable where T : IList
     {
         #region Properties
         public HtmlProperties HtmlProperties { get; set; }
@@ -17,7 +17,7 @@ namespace Sushi.Gridhelper
         public GridSize Size { get; set; }
         public GridPagination PaginationOptions { get; set; }
         public List<GridColumn> Columns { get; set; } 
-        public List<T> Items { get; set; }
+        public T Items { get; set; }
         public String Action { get; set; }
         public GridFilter Filter { get; set; }
         #endregion
