@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using Sushi.ButtonGroupHelper;
 using Sushi.ButtonHelper;
+using Sushi.DropDownHelper;
 using Sushi.Enums;
 
 namespace Sushi.ButtonDropDownHelper
@@ -72,6 +73,8 @@ namespace Sushi.ButtonDropDownHelper
         {
             this.ViewContext = view;
             this.Component = new ButtonDropDownComponent();
+            this.Component.Button = new ButtonComponent();
+            this.Component.DropDown = new DropDownComponent();
             
         }
         #endregion

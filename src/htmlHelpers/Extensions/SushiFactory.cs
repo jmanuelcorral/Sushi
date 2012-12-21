@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using Sushi.BlockHelper;
+using Sushi.ButtonDropDownHelper;
 using Sushi.ButtonGroupHelper;
 using Sushi.ButtonHelper;
 using Sushi.DropDownHelper;
@@ -32,6 +33,12 @@ namespace Sushi.Extensions
         {
             var btn = new Button(viewContext);
             return btn;
+        }
+
+        public ButtonDropDown ButtonDropDown()
+        {
+            var btnDD = new ButtonDropDown(viewContext);
+            return btnDD;
         }
 
         /// <summary>
@@ -158,6 +165,8 @@ namespace Sushi.Extensions
             var bg = new ButtonGroup(viewContext);
             return bg;
         }
+
+
         
         /// <summary>
         /// Helper that generates a Link 
@@ -237,6 +246,12 @@ namespace Sushi.Extensions
         {
             var btn = new Button(viewContext);
             return btn;
+        }
+
+        public ButtonDropDown ButtonDropDown()
+        {
+            var btnDD = new ButtonDropDown(viewContext);
+            return btnDD;
         }
 
         /// <summary>

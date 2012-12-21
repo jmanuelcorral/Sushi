@@ -15,9 +15,9 @@ namespace sushi.htmlHelpers.Test.Helpers
         public void TestDefault()
         {
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
-            //var comparer = SushiExtension.Sushi(htmlHelper).ButtonDropDown().ToString();
-            Assert.Inconclusive("Refactor");
-            //Assert.AreEqual(comparer, "<div class=\"btn-group\"></div>");
+            var obtained = SushiExtension.Sushi(htmlHelper).ButtonDropDown().ToString();
+            var expected = "";
+            Assert.AreEqual(expected, obtained);
         }
 
     }
