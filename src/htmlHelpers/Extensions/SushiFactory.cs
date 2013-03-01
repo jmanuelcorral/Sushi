@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Text;
+using System.Web;
 using System.Web.Mvc;
 using Sushi.BlockHelper;
 using Sushi.ButtonDropDownHelper;
@@ -25,7 +27,27 @@ namespace Sushi.Extensions
    public class SushiFactory<TModel>
     {
         public ViewContext viewContext { get; private set; }
+       private const string ScriptsKey = "__scripts__";
 
+       public MvcHtmlString ScriptManager()
+       {
+           var stack = viewContext.HttpContext.Items[ScriptsKey] as Stack<string>;
+           if (stack == null)
+           {
+               return MvcHtmlString.Empty;
+           }
+
+           var scriptTag = new TagBuilder("script");
+           scriptTag.Attributes["type"] = "text/javascript";
+           var sb = new StringBuilder();
+           foreach (var script in stack)
+           {
+               sb.Append(script);
+           }
+           scriptTag.InnerHtml = sb.ToString();
+
+           return new MvcHtmlString(scriptTag.ToString());
+       }
         /// <summary>
         /// Helper that generates a new Button
         /// </summary>
@@ -237,6 +259,27 @@ namespace Sushi.Extensions
     public class SushiFactory
     {
         public ViewContext viewContext { get; private set; }
+        private const string ScriptsKey = "__scripts__";
+
+        public MvcHtmlString ScriptManager()
+        {
+            var stack = viewContext.HttpContext.Items[ScriptsKey] as Stack<string>;
+            if (stack == null)
+            {
+                return MvcHtmlString.Empty;
+            }
+
+            var scriptTag = new TagBuilder("script");
+            scriptTag.Attributes["type"] = "text/javascript";
+            var sb = new StringBuilder();
+            foreach (var script in stack)
+            {
+                sb.AppendLine(script);
+            }
+            scriptTag.InnerHtml = sb.ToString();
+
+            return new MvcHtmlString(scriptTag.ToString());
+        }
 
         /// <summary>
         /// Helper that generates a new Button

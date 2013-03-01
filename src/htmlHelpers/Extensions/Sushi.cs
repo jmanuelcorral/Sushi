@@ -14,6 +14,7 @@ namespace Sushi.Extensions
             return new SushiFactory(helper.ViewContext);
         }
 
+
         /// <summary>
         /// Loads Sushi Helpers Framework
         /// </summary>

@@ -8,7 +8,7 @@ using Sushi.Html;
 
 namespace Sushi.Gridhelper
 {
-    public class GridComponent<T> : ISushiComponent, ISushiSkinnable where T : IList
+    public class GridComponent<T> : ISushiComponent, ISushiSkinnable, ISushiScriptable where T : IList
     {
         #region Properties
         public HtmlProperties HtmlProperties { get; set; }
@@ -20,6 +20,7 @@ namespace Sushi.Gridhelper
         public T Items { get; set; }
         public String Action { get; set; }
         public GridFilter Filter { get; set; }
+        public ISushiScript Scripts { get; set; }
         #endregion
     }
 }

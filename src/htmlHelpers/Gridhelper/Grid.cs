@@ -68,6 +68,7 @@ namespace Sushi.Gridhelper
             this.Component.Style = new List<GridStyle>();
             this.Component.Action = "";
             this.Component.Skin = new GridSkin();
+            this.Component.Scripts = new GridScripts();
         }
 
         internal String BuildHeader()
@@ -121,14 +122,36 @@ namespace Sushi.Gridhelper
             return tbody.ToString(TagRenderMode.Normal);
         }
 
+        private void BuildScripts()
+        {
+          //Empezamos por el Base Script
+            if (String.IsNullOrEmpty(this.Component.HtmlProperties.Id))
+            {
+                this.Component.HtmlProperties.Id = Resolvers.HtmlResolver.GenerateHtmlValidId(this.ViewContext,
+                                                                                              typeof (Grid<T>));
+            }
+          ((GridScripts)this.Component.Scripts).AddScript("$('"+ this.Component.HtmlProperties.Id +"').dataTable()");
+
+            Stack stack = (Stack)this.ViewContext.HttpContext.Items["__scripts__"];
+            if (stack == null)
+            {
+                stack = new Stack();
+            }
+            stack.Push(((GridScripts)this.Component.Scripts).GetGeneratedScript());
+        }
+
         internal String BuildTable()
         {
             TagBuilder table = new TagBuilder("table");
             String cssClass = setCSSClasses();
             if (!String.IsNullOrEmpty(cssClass)) table.AddCssClass(cssClass);
             table.InnerHtml = BuildHeader() + BuildBody(); //+ BuildFooter();
+            //Construir la parte de Scripts que realizan los filtrados, etc
+            BuildScripts();
             return table.ToString(TagRenderMode.Normal);
         }
+
+        
 
         public  IList ExecuteFilter<TElement>()
         {

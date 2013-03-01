@@ -81,5 +81,19 @@ namespace sushi.htmlHelpers.Test.Helpers
             var resultExpected = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestSecondGrid10);
             Assert.AreEqual(resultExpected, resultObtained);
         }
+
+        [Test]
+        public void TestJavascriptIsLoaded()
+        {
+            FakeHtmlHelper.CreateStronglyTypedFakeViewDataDictionary(ModelFactories.GetPeople20Collection());
+            var htmlHelper = FakeHtmlHelper.CreateStronglyTypedHtmlHelperWithCollection();
+            var execution = SushiExtension.Sushi(htmlHelper).Grid(x => x)
+                    .Bind()
+                    .Filter<Person>(new GridFilter { Pagination = true, ResultsPerPage = 10, ShowTotalResults = true, CurrentPage = 1 })
+                    .ToHtmlString();
+            var resultObtained = SushiExtension.Sushi(htmlHelper).ScriptManager();
+            var resultExpected = "<script type=\"text/javascript\">alert('HelloGrid');</script>";
+            Assert.AreEqual(resultExpected, resultObtained.ToString());
+        }
     }
 }

@@ -83,6 +83,7 @@
     <Compile Include="Gridhelper\GridColumn.cs" />
     <Compile Include="Gridhelper\GridComponent.cs" />
     <Compile Include="Gridhelper\GridFilter.cs" />
+    <Compile Include="Gridhelper\GridScripts.cs" />
     <Compile Include="Gridhelper\GridSkin.cs" />
     <Compile Include="IconHelper\Icon.cs" />
     <Compile Include="IconHelper\IconComponent.cs" />
@@ -92,6 +93,8 @@
     <Compile Include="ISushiContainer.cs" />
     <Compile Include="ISushiFilter.cs" />
     <Compile Include="ISushiPagedList.cs" />
+    <Compile Include="ISushiScript.cs" />
+    <Compile Include="ISushiScriptable.cs" />
     <Compile Include="ISushiSkin.cs" />
     <Compile Include="ISushiSkinnable.cs" />
     <Compile Include="LabelHelper\LabelComponent.cs" />
