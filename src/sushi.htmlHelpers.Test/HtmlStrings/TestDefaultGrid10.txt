@@ -1,4 +1,4 @@
-﻿<table class="span1">
+﻿<table class="span1" id="Grid1">
 	<thead>
 		<tr>
 			<th>Id</th>

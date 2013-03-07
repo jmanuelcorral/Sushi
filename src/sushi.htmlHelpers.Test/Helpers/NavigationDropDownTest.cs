@@ -1,8 +1,7 @@
 ﻿using NUnit.Framework;
 using System.Web.Mvc;
-using Sushi.Extensions;
-using Sushi.LinkHelper;
-using Sushi.NavigationHelper;
+using Sushi.Helpers.LinkHelper;
+using Sushi.Helpers.NavigationHelper;
 
 namespace sushi.htmlHelpers.Test.Helpers
 {

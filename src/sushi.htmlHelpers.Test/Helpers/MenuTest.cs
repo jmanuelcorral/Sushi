@@ -1,10 +1,10 @@
 ﻿using System.Web.Mvc;
 using NUnit.Framework;
-using Sushi.Enums;
-using Sushi.Extensions;
-using Sushi.FormHelper;
-using Sushi.LinkHelper;
-using Sushi.NavigationHelper;
+using Sushi.Helpers.Enums;
+using Sushi.Helpers.Extensions;
+using Sushi.Helpers.FormHelper;
+using Sushi.Helpers.LinkHelper;
+using Sushi.Helpers.NavigationHelper;
 
 namespace sushi.htmlHelpers.Test.Helpers
 {

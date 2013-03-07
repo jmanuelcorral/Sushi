@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using NUnit.Framework;
-using Sushi.Extensions;
+using Sushi.Helpers.Extensions;
 
 namespace sushi.htmlHelpers.Test.Helpers
 {

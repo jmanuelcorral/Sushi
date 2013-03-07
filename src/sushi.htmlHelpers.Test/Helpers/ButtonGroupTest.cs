@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
 using NUnit.Framework;
-using Sushi.Enums;
-using Sushi.Extensions;
+using Sushi.Helpers.Extensions;
 
 namespace sushi.htmlHelpers.Test.Helpers
 {
