@@ -1,6 +1,7 @@
 ﻿namespace Sushi.Helpers.Gridhelper
 {
-    public class GridBindParameters
+    public class GridBinding
     {
+
     }
 }

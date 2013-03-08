@@ -80,7 +80,7 @@
     <Compile Include="Helpers\FormHelper\FormComponent.cs" />
     <Compile Include="Helpers\FormHelper\Form.cs" />
     <Compile Include="Helpers\Gridhelper\Grid.cs" />
-    <Compile Include="Helpers\Gridhelper\GridBindParameters.cs" />
+    <Compile Include="Helpers\Gridhelper\GridBinding.cs" />
     <Compile Include="Helpers\Gridhelper\GridColumn.cs" />
     <Compile Include="Helpers\Gridhelper\GridComponent.cs" />
     <Compile Include="Helpers\Gridhelper\GridOptions.cs" />
@@ -88,6 +88,7 @@
     <Compile Include="Helpers\Gridhelper\GridScripts.cs" />
     <Compile Include="Helpers\Gridhelper\GridSearch.cs" />
     <Compile Include="Helpers\Gridhelper\GridSkin.cs" />
+    <Compile Include="Helpers\Gridhelper\GridSorting.cs" />
     <Compile Include="Helpers\IconHelper\Icon.cs" />
     <Compile Include="Helpers\IconHelper\IconComponent.cs" />
     <Compile Include="Helpers\InputHelper\InputComponent.cs" />
