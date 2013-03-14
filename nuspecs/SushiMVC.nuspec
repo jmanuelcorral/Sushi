@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>SushiMVC</id>
-        <version>1.8.10</version>
+        <version>1.8.13</version>
         <title>Sushi Library</title>
         <authors>jmanuelcorral</authors>
         <owners>jmanuelcorral</owners>
@@ -16,7 +16,8 @@ Sushi uses BootStrap, that means the responsive and elegant user interface is gu
         <summary />
         <releaseNotes>Version 1.8.10
 ----------------------
-Grid Improvements
+Grid Improvements, 
+WebApi Binding (Experimental)
 
 Available Helpers:
 ------------------------
@@ -39,8 +40,14 @@ http://jmanuelcorral.github.com/Sushi/</releaseNotes>
         </dependencies>
     </metadata>
     <files>
+        <file src="..\src\htmlHelpers\images\sort_asc.png" target="content\Content\images\sort_asc.png" />
+        <file src="..\src\htmlHelpers\images\sort_both.png" target="content\Content\images\sort_both.png" />
+        <file src="..\src\htmlHelpers\images\sort_desc.png" target="content\Content\images\sort_desc.png" />
+        <file src="..\src\htmlHelpers\CSS\sushi.css" target="content\Content\sushi.css" />
         <file src="..\src\htmlHelpers\JS\jquery.dataTables.js" target="content\Scripts\jquery.dataTables.js" />
         <file src="..\src\htmlHelpers\JS\jquery.dataTables.min.js" target="content\Scripts\jquery.dataTables.min.js" />
-        <file src="..\src\htmlHelpers\obj\Release\Sushi.dll" target="lib\Sushi.dll" />
+        <file src="..\src\htmlHelpers\JS\sushi.js" target="content\Scripts\sushi.js" />
+        <file src="..\src\htmlHelpers\JS\sushi.min.js" target="content\Scripts\sushi.min.js" />
+        <file src="..\build\Release\Sushi.dll" target="lib\Sushi.dll" />
     </files>
 </package>

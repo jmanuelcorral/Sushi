@@ -43,6 +43,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
@@ -141,13 +142,21 @@
     <Compile Include="Helpers\Resolvers\NavResolver.cs" />
     <Compile Include="Helpers\SeparatorHelper\Separator.cs" />
     <Compile Include="Helpers\SideBarHelper\SideBarComponent.cs" />
+    <Compile Include="ModelBinders\GridModelBinder.cs" />
+    <Compile Include="ModelBinders\APIGridAdapter.cs" />
+    <Compile Include="ModelBinders\Utilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\SideBarHelper\SideBar.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="CSS\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="CSS\sushi.css" />
+    <Content Include="images\sort_asc.png" />
+    <Content Include="images\sort_both.png" />
+    <Content Include="images\sort_desc.png" />
+    <Content Include="JS\sushi.min.js" />
+    <Content Include="JS\sushi.js" />
+    <Content Include="JS\jquery.dataTables.js" />
     <Content Include="JS\jquery.dataTables.min.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

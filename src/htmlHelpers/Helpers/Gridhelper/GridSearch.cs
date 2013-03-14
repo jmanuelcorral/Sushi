@@ -28,7 +28,6 @@ namespace Sushi.Helpers.Gridhelper
 
         public void ToJS(JSBuilder JS)
         {
-            StringBuilder resultjs = new StringBuilder();
             if (this.Component.ActivateSearch)
             {
                 JS.Add("bFilter", "true");

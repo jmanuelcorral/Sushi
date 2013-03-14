@@ -19,7 +19,8 @@ namespace Sushi.Helpers.Gridhelper
         public GridOptions Options { get; set; }
         public ISushiScript Scripts { get; set; }
         public GridPagination Pagination { get; set; }
-        public GridSearch Search { get; set; } 
+        public GridSearch Search { get; set; }
+        public GridBinding Binding { get; set; }
         #endregion
        
     }

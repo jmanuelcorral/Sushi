@@ -62,6 +62,12 @@ namespace Sushi.Helpers.Gridhelper
             return this;
         }
 
+        public Grid<T> Binding (Func<GridBinding, GridBinding> binding)
+        {
+            this.Component.Binding = binding(this.Component.Binding);
+            return this;
+        }
+
         private void setOptions(GridOptions opt)
         {
             this.Component.Options = opt;
@@ -87,6 +93,7 @@ namespace Sushi.Helpers.Gridhelper
             this.Component.Options = new GridOptions();
             this.Component.Pagination = new GridPagination();
             this.Component.Search = new GridSearch();
+            this.Component.Binding = new GridBinding();
         }
 
         internal String BuildHeader()
@@ -151,6 +158,7 @@ namespace Sushi.Helpers.Gridhelper
             JSBuilder JS = new JSBuilder();
             this.Component.Pagination.ToJS(JS);
             this.Component.Search.ToJS(JS);
+            this.Component.Binding.ToJS(JS);
             String basescript = "$('#" + this.Component.HtmlProperties.Id + "').dataTable(" +  JS.ToLiteralJSObject(true) +");";
             ((GridScripts)this.Component.Scripts).AddScript(basescript);
             var scripts = JSResolver.JSStack(ViewContext);
