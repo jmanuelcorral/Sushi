@@ -54,6 +54,15 @@ namespace Sushi.ModelBinders
             _properties = _type.GetProperties();
         }
 
+        private Boolean IsSearchThrown(){
+             if (_keys.ContainsKey("sSearch")) { 
+                    string search = _keys["sSearch"];
+                    if (!String.IsNullOrEmpty(search))
+                        return true;
+             }
+            return false;
+        }
+
        /// <summary>
         /// Parses the <see cref="HttpRequestBase"/> parameter values for the accepted 
         /// DataTable request values
@@ -123,9 +132,16 @@ namespace Sushi.ModelBinders
                                     .Select(SelectProperties)
                                     .ToList();
 
-            // total records that are displayed
-            list.iTotalDisplayRecords = list.aaData.Count;
+            // total records that are displayed changes if a search is thrown
 
+            if (IsSearchThrown())
+            {
+                list.iTotalDisplayRecords = list.aaData.Count;
+            }
+            else
+            {
+                list.iTotalDisplayRecords = _queriable.Count();
+            }
             return list;
         }
 
@@ -176,15 +192,14 @@ namespace Sushi.ModelBinders
                         }
                         else { _queriable = _queriable.OrderByDescending(propertyExpr); }
                         break;
-                        /*
-                    case default:
-                        var propertyExpr = Expression.Lambda<Func<T, object>>(Expression.Property(paramExpr, _properties[sortcolumn]), paramExpr);    
+                    default:
+                        var propertyExprObj = Expression.Lambda<Func<T, object>>(Expression.Property(paramExpr, _properties[sortcolumn]), paramExpr);    
                         // apply the sort (default is ascending if not specified)
                         if (string.IsNullOrEmpty(sortdir) || sortdir.Equals(ASCENDING_SORT, StringComparison.OrdinalIgnoreCase))
-                        {_queriable = _queriable.OrderBy(propertyExpr);}
+                        { _queriable = _queriable.OrderBy(propertyExprObj); }
                         else
-                        {_queriable = _queriable.OrderByDescending(propertyExpr);}
-                        break;*/
+                        { _queriable = _queriable.OrderByDescending(propertyExprObj); }
+                        break;
                 }
             }
         }

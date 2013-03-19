@@ -50,11 +50,13 @@ namespace Sushi.Helpers.Gridhelper
                 if (this.Component.CanDisplayPaginationOptions)
                 {
                     js.Add("bLengthChange", "true");
+                    
+                    //sPaginationType
                 }
-                else
-                {
-                    js.Add("bLengthChange", "false");
-                }
+                //else
+                //{
+                //    js.Add("bLengthChange", "false");
+                //}
                 if (this.Component.RowsPerPage != 10)
                 {
                     js.Add("iDisplayLength", this.Component.RowsPerPage.ToString());

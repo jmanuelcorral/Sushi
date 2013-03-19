@@ -150,14 +150,14 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="CSS\sushi.css" />
+    <Content Include="css\sushi.css" />
     <Content Include="images\sort_asc.png" />
     <Content Include="images\sort_both.png" />
     <Content Include="images\sort_desc.png" />
-    <Content Include="JS\sushi.min.js" />
-    <Content Include="JS\sushi.js" />
-    <Content Include="JS\jquery.dataTables.js" />
-    <Content Include="JS\jquery.dataTables.min.js" />
+    <Content Include="js\sushi.min.js" />
+    <Content Include="js\sushi.js" />
+    <Content Include="js\jquery.dataTables.js" />
+    <Content Include="js\jquery.dataTables.min.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

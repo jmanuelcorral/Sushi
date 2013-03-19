@@ -129,7 +129,7 @@ namespace Sushi.Helpers.Gridhelper
         internal String BuildBody()
         {
             TagBuilder tbody = new TagBuilder("tbody");
-            if (this.Component.Items != null)
+            if (this.Component.Items != null && !this.Component.Binding.Component.IsRemote)
             {
                 foreach (var element in this.Component.Items)
                 {
@@ -159,6 +159,8 @@ namespace Sushi.Helpers.Gridhelper
             this.Component.Pagination.ToJS(JS);
             this.Component.Search.ToJS(JS);
             this.Component.Binding.ToJS(JS);
+            //if (this.Component.Size)
+            JS.Add("sDom", "\"<'row'<'span3'l><'span6'f>r>t<'row'<'span3'i><'span6'p>>\"");
             String basescript = "$('#" + this.Component.HtmlProperties.Id + "').dataTable(" +  JS.ToLiteralJSObject(true) +");";
             ((GridScripts)this.Component.Scripts).AddScript(basescript);
             var scripts = JSResolver.JSStack(ViewContext);
@@ -202,7 +204,7 @@ namespace Sushi.Helpers.Gridhelper
                         break;
                 }
             }
-            ResultStyle += String.Format("{0}", Resolvers.GridResolver.ResolveSize(this.Component.Size));
+            //ResultStyle += String.Format("{0}", Resolvers.GridResolver.ResolveSize(this.Component.Size));
             return ResultStyle;
         }
 
