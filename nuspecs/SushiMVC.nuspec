@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>SushiMVC</id>
-        <version>1.8.15</version>
+        <version>1.8.19</version>
         <title>Sushi Library</title>
         <authors>jmanuelcorral</authors>
         <owners>jmanuelcorral</owners>
@@ -14,10 +14,9 @@
 
 Sushi uses BootStrap, that means the responsive and elegant user interface is guaranteed.</description>
         <summary />
-        <releaseNotes>Version 1.8.15
+        <releaseNotes>Version 1.8.19
 ----------------------
-New Style (metro)
-No more Bootstrap dependencies
+Added Font Awesome
 
 Available Helpers:
 ------------------------
@@ -35,9 +34,13 @@ For more information go to:
 http://jmanuelcorral.github.com/Sushi/</releaseNotes>
         <copyright>José Manuel Corral</copyright>
         <tags>BootStrap, Sushi, HtmlHelpers, Html5, MVC, Control</tags>
-        <dependencies />
     </metadata>
     <files>
+        <file src="..\src\htmlHelpers\fonts\fontawesome-webfont.eot" target="content\Content\fonts\fontawesome-webfont.eot" />
+        <file src="..\src\htmlHelpers\fonts\fontawesome-webfont.svg" target="content\Content\fonts\fontawesome-webfont.svg" />
+        <file src="..\src\htmlHelpers\fonts\fontawesome-webfont.ttf" target="content\Content\fonts\fontawesome-webfont.ttf" />
+        <file src="..\src\htmlHelpers\fonts\fontawesome-webfont.woff" target="content\Content\fonts\fontawesome-webfont.woff" />
+        <file src="..\src\htmlHelpers\fonts\FontAwesome.otf" target="content\Content\fonts\FontAwesome.otf" />
         <file src="..\src\htmlHelpers\images\sort_asc.png" target="content\Content\images\sort_asc.png" />
         <file src="..\src\htmlHelpers\images\sort_both.png" target="content\Content\images\sort_both.png" />
         <file src="..\src\htmlHelpers\images\sort_desc.png" target="content\Content\images\sort_desc.png" />
@@ -45,7 +48,12 @@ http://jmanuelcorral.github.com/Sushi/</releaseNotes>
         <file src="..\src\htmlHelpers\css\bootstrap-responsive.min.css" target="content\Content\bootstrap-responsive.min.css" />
         <file src="..\src\htmlHelpers\css\bootstrap.css" target="content\Content\bootstrap.css" />
         <file src="..\src\htmlHelpers\css\bootstrap.min.css" target="content\Content\bootstrap.min.css" />
+        <file src="..\src\htmlHelpers\css\font-awesome-ie7.min.css" target="content\Content\font-awesome-ie7.min.css" />
+        <file src="..\src\htmlHelpers\css\font-awesome.css" target="content\Content\font-awesome.css" />
+        <file src="..\src\htmlHelpers\css\font-awesome.min.css" target="content\Content\font-awesome.min.css" />
         <file src="..\src\htmlHelpers\CSS\sushi.css" target="content\Content\sushi.css" />
+        <file src="..\src\htmlHelpers\js\bootstrap.js" target="content\Scripts\bootstrap.js" />
+        <file src="..\src\htmlHelpers\js\bootstrap.min.js" target="content\Scripts\bootstrap.min.js" />
         <file src="..\src\htmlHelpers\JS\jquery.dataTables.js" target="content\Scripts\jquery.dataTables.js" />
         <file src="..\src\htmlHelpers\JS\jquery.dataTables.min.js" target="content\Scripts\jquery.dataTables.min.js" />
         <file src="..\src\htmlHelpers\JS\sushi.js" target="content\Scripts\sushi.js" />
