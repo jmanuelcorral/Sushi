@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>SushiMVC</id>
-        <version>1.8.13</version>
+        <version>1.8.15</version>
         <title>Sushi Library</title>
         <authors>jmanuelcorral</authors>
         <owners>jmanuelcorral</owners>
@@ -14,10 +14,10 @@
 
 Sushi uses BootStrap, that means the responsive and elegant user interface is guaranteed.</description>
         <summary />
-        <releaseNotes>Version 1.8.10
+        <releaseNotes>Version 1.8.15
 ----------------------
-Grid Improvements, 
-WebApi Binding (Experimental)
+New Style (metro)
+No more Bootstrap dependencies
 
 Available Helpers:
 ------------------------
@@ -35,14 +35,16 @@ For more information go to:
 http://jmanuelcorral.github.com/Sushi/</releaseNotes>
         <copyright>José Manuel Corral</copyright>
         <tags>BootStrap, Sushi, HtmlHelpers, Html5, MVC, Control</tags>
-        <dependencies>
-            <dependency id="Twitter.Bootstrap" version="2.2.1" />
-        </dependencies>
+        <dependencies />
     </metadata>
     <files>
         <file src="..\src\htmlHelpers\images\sort_asc.png" target="content\Content\images\sort_asc.png" />
         <file src="..\src\htmlHelpers\images\sort_both.png" target="content\Content\images\sort_both.png" />
         <file src="..\src\htmlHelpers\images\sort_desc.png" target="content\Content\images\sort_desc.png" />
+        <file src="..\src\htmlHelpers\css\bootstrap-responsive.css" target="content\Content\bootstrap-responsive.css" />
+        <file src="..\src\htmlHelpers\css\bootstrap-responsive.min.css" target="content\Content\bootstrap-responsive.min.css" />
+        <file src="..\src\htmlHelpers\css\bootstrap.css" target="content\Content\bootstrap.css" />
+        <file src="..\src\htmlHelpers\css\bootstrap.min.css" target="content\Content\bootstrap.min.css" />
         <file src="..\src\htmlHelpers\CSS\sushi.css" target="content\Content\sushi.css" />
         <file src="..\src\htmlHelpers\JS\jquery.dataTables.js" target="content\Scripts\jquery.dataTables.js" />
         <file src="..\src\htmlHelpers\JS\jquery.dataTables.min.js" target="content\Scripts\jquery.dataTables.min.js" />

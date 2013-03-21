@@ -150,6 +150,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="css\bootstrap-responsive.css" />
+    <Content Include="css\bootstrap-responsive.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
     <Content Include="css\sushi.css" />
     <Content Include="images\sort_asc.png" />
     <Content Include="images\sort_both.png" />
