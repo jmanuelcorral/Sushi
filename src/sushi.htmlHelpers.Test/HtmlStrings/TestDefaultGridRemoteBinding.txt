@@ -1,0 +1,13 @@
+﻿<table id="Grid1">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>FirstSurname</th>
+			<th>SecondSurname</th>
+			<th>BornDate</th>
+			<th>Register</th>	
+		</tr>
+	</thead>
+	<tbody></tbody>
+</table>

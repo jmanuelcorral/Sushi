@@ -10,7 +10,15 @@ namespace sushi.htmlHelpers.Test.Html
     {
         TestDefaultGrid10,
         TestDefaultGrid20,
-        TestSecondGrid10
+        TestSecondGrid10,
+        TestDefaultJS,
+        TestSettedGridPagingControls,
+        TestSetted20RecordsPerPage,
+        TestGridSettedPaginationOff,
+        TestGridFilteringOn,
+        TestGridFilteringOff,
+        TestDefaultGridRemoteBinding,
+        TestGridSettedRemoteBinding
     }
 
     public static class HtmlStringLoader
@@ -26,6 +34,22 @@ namespace sushi.htmlHelpers.Test.Html
                         return "TestDefaultGrid20.txt";
                     case TextLoad.TestSecondGrid10:
                         return "TestSecondGrid10.txt";
+                    case TextLoad.TestDefaultJS:
+                        return "TestDefaultGridJS.txt";
+                    case TextLoad.TestSettedGridPagingControls:
+                        return "TestGridSettedPaginationControls.txt";
+                    case TextLoad.TestSetted20RecordsPerPage:
+                        return "TestGridSetted20RecordsPerPage.txt";
+                    case TextLoad.TestGridSettedPaginationOff:
+                        return "TestGridSettedPaginationOff.txt";
+                    case TextLoad.TestGridFilteringOn:
+                        return "TestGridFilteringOn.txt";
+                    case TextLoad.TestGridFilteringOff:
+                        return "TestGridFilteringOff.txt";
+                    case TextLoad.TestDefaultGridRemoteBinding:
+                        return "TestDefaultGridRemoteBinding.txt";
+                    case TextLoad.TestGridSettedRemoteBinding:
+                        return "TestGridSettedRemoteBinding.txt";
                     default:
                     return "";
             }

@@ -1,0 +1,8 @@
+﻿<script type="text/javascript">
+	$('#Grid1').dataTable({ 
+		"bPaginate" : true, 
+		"iDisplayLength" : 20, 
+		"bFilter" : false, 
+		"sDom" : "<'row'<'span3'l><'span6'f>r>t<'row'<'span3'i><'span6'p>>"
+	});
+</script>
