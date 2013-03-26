@@ -13,7 +13,6 @@ namespace Sushi.Helpers.Gridhelper
         public ISushiSkin Skin { get; set; }
         public List<GridStyle> Style { get; set; }
         public GridSize Size { get; set; }
-        public List<GridColumn> Columns { get; set; } 
         public T Items { get; set; }
         public String Action { get; set; }
         public GridOptions Options { get; set; }
@@ -21,6 +20,7 @@ namespace Sushi.Helpers.Gridhelper
         public GridPagination Pagination { get; set; }
         public GridSearch Search { get; set; }
         public GridBinding Binding { get; set; }
+        public GridColumnOptions Columns { get; set; }
         #endregion
        
     }

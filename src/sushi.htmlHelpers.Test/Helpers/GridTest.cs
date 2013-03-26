@@ -13,6 +13,7 @@ namespace sushi.htmlHelpers.Test.Helpers
     [TestFixture]
     public class GridTest
     {
+        #region default tests
         [Test]
         public void TestDefault()
         {
@@ -20,7 +21,7 @@ namespace sushi.htmlHelpers.Test.Helpers
             var htmlHelper = FakeHtmlHelper.CreateStronglyTypedHtmlHelperWithCollection();
             var comparer = SushiExtension.Sushi(htmlHelper).Grid(x => x).ToHtmlString();
             var expected = "<table id=\"Grid1\"><thead><tr></tr></thead><tbody></tbody></table>";
-            Assert.AreEqual(expected, comparer );
+            Assert.AreEqual(expected, comparer);
         }
 
         [Test]
@@ -55,6 +56,7 @@ namespace sushi.htmlHelpers.Test.Helpers
             var resultExpected = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestDefaultJS);
             Assert.AreEqual(resultExpected, resultObtained.ToString());
         }
+        #endregion
 
         #region Pagination Testing
         [Test]
@@ -170,6 +172,42 @@ namespace sushi.htmlHelpers.Test.Helpers
             Assert.AreEqual(expectedtable, execution);
             var resultObtained = SushiExtension.Sushi(htmlHelper).ScriptManager().ToString();
             var resultExpected = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestGridSettedRemoteBinding);
+            Assert.AreEqual(resultExpected, resultObtained);
+        }
+        #endregion
+
+        #region Hidding columns
+        [Test]
+        public void TestSetGridHiddenOneColumn()
+        {
+            FakeHtmlHelper.CreateStronglyTypedFakeViewDataDictionary(ModelFactories.GetPeople20Collection());
+            var htmlHelper = FakeHtmlHelper.CreateStronglyTypedHtmlHelperWithCollection();
+            var execution = SushiExtension.Sushi(htmlHelper).Grid(x => x)
+                    .Bind()
+                    .Columns(options => options.ColumnVisible(0,false))
+                    .Binding(binding => binding.Setup("/StringAction"))
+                    .ToHtmlString();
+            var expectedtable = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestDefaultGridRemoteBinding);
+            Assert.AreEqual(expectedtable, execution);
+            var resultObtained = SushiExtension.Sushi(htmlHelper).ScriptManager().ToString();
+            var resultExpected = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestGridHiddingOneColumn);
+            Assert.AreEqual(resultExpected, resultObtained);
+        }
+
+        [Test]
+        public void TestSetGridHiddenTwoColumns()
+        {
+            FakeHtmlHelper.CreateStronglyTypedFakeViewDataDictionary(ModelFactories.GetPeople20Collection());
+            var htmlHelper = FakeHtmlHelper.CreateStronglyTypedHtmlHelperWithCollection();
+            var execution = SushiExtension.Sushi(htmlHelper).Grid(x => x)
+                    .Bind()
+                    .Columns(options => options.ColumnVisible(0, false).ColumnVisible(1,false))
+                    .Binding(binding => binding.Setup("/StringAction"))
+                    .ToHtmlString();
+            var expectedtable = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestDefaultGridRemoteBinding);
+            Assert.AreEqual(expectedtable, execution);
+            var resultObtained = SushiExtension.Sushi(htmlHelper).ScriptManager().ToString();
+            var resultExpected = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestGridHiddingTwoColumns);
             Assert.AreEqual(resultExpected, resultObtained);
         }
         #endregion

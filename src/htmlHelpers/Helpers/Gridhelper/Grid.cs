@@ -20,18 +20,6 @@ namespace Sushi.Helpers.Gridhelper
             return this;
         }
 
-        public Grid<T> Columns(List<GridColumn> columns)
-        {
-            this.Component.Columns = columns;
-            return this;
-        }
-
-        public Grid<T> AddColumn(GridColumn gridColumn)
-        {
-            this.Component.Columns.Add(gridColumn);
-            return this;
-        }
-
         public Grid<T> Styles(List<GridStyle> styles)
         {
             this.Component.Style = styles;
@@ -47,6 +35,12 @@ namespace Sushi.Helpers.Gridhelper
         public Grid<T> Pagination(Func<GridPagination, GridPagination> pagination)
         {
             this.Component.Pagination = pagination(this.Component.Pagination);
+            return this;
+        }
+
+        public Grid<T> Columns(Func<GridColumnOptions, GridColumnOptions> columns)
+        {
+            this.Component.Columns = columns(this.Component.Columns);
             return this;
         }
 
@@ -85,7 +79,6 @@ namespace Sushi.Helpers.Gridhelper
             this.ViewContext = viewContext;
             this.Component = new GridComponent<T>();
             this.Component.HtmlProperties = new HtmlProperties(viewContext, this.Component.GetType());
-            this.Component.Columns = new List<GridColumn>();
             this.Component.Style = new List<GridStyle>();
             this.Component.Action = "";
             this.Component.Skin = new GridSkin();
@@ -94,22 +87,23 @@ namespace Sushi.Helpers.Gridhelper
             this.Component.Pagination = new GridPagination();
             this.Component.Search = new GridSearch();
             this.Component.Binding = new GridBinding();
+            this.Component.Columns = new GridColumnOptions();
         }
 
         internal String BuildHeader()
         {
             TagBuilder thead = new TagBuilder("thead");
             TagBuilder tr = new TagBuilder("tr");
-            if (this.Component.Columns.Count > 0)
-            {
-                foreach (var column in this.Component.Columns)
-                {
-                    var th = new TagBuilder("th");
-                    th.InnerHtml = column.Title;
-                    tr.InnerHtml += th.ToString(TagRenderMode.Normal);
-                }
-            }
-            else
+            //if (this.Component.Columns.Count > 0)
+            //{
+            //    foreach (var column in this.Component.Columns)
+            //    {
+            //        var th = new TagBuilder("th");
+            //        th.InnerHtml = column.Title;
+            //        tr.InnerHtml += th.ToString(TagRenderMode.Normal);
+            //    }
+            //}
+            //else
             {
                 if (this.Component.Items !=null &&  this.Component.Items.Count > 0)
                 {
@@ -159,6 +153,7 @@ namespace Sushi.Helpers.Gridhelper
             this.Component.Pagination.ToJS(JS);
             this.Component.Search.ToJS(JS);
             this.Component.Binding.ToJS(JS);
+            this.Component.Columns.ToJS(JS);
             //if (this.Component.Size)
             JS.Add("sDom", "\"<'row'<'span3'l><'span6'f>r>t<'row'<'span3'i><'span6'p>>\"");
             String basescript = "$('#" + this.Component.HtmlProperties.Id + "').dataTable(" +  JS.ToLiteralJSObject(true) +");";

@@ -142,7 +142,6 @@
     <Compile Include="Helpers\Resolvers\NavResolver.cs" />
     <Compile Include="Helpers\SeparatorHelper\Separator.cs" />
     <Compile Include="Helpers\SideBarHelper\SideBarComponent.cs" />
-    <Compile Include="ModelBinders\GridModelBinder.cs" />
     <Compile Include="ModelBinders\APIGridAdapter.cs" />
     <Compile Include="ModelBinders\Utilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

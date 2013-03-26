@@ -18,7 +18,9 @@ namespace sushi.htmlHelpers.Test.Html
         TestGridFilteringOn,
         TestGridFilteringOff,
         TestDefaultGridRemoteBinding,
-        TestGridSettedRemoteBinding
+        TestGridSettedRemoteBinding,
+        TestGridHiddingOneColumn,
+        TestGridHiddingTwoColumns
     }
 
     public static class HtmlStringLoader
@@ -50,6 +52,10 @@ namespace sushi.htmlHelpers.Test.Html
                         return "TestDefaultGridRemoteBinding.txt";
                     case TextLoad.TestGridSettedRemoteBinding:
                         return "TestGridSettedRemoteBinding.txt";
+                    case TextLoad.TestGridHiddingOneColumn:
+                        return "TestGridHiddingOneColumn.txt";
+                    case TextLoad.TestGridHiddingTwoColumns:
+                        return "TestGridHiddingTwoColumns.txt";
                     default:
                     return "";
             }
