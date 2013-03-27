@@ -50,6 +50,14 @@ namespace Sushi.Helpers.Gridhelper
                     {
                         jsBuilderElement.Add("bVisible", "false");
                     }
+                    if (!element.sorting)
+                    {
+                        jsBuilderElement.Add("bSortable", "false");
+                    }
+                    if (!element.filtering)
+                    {
+                        jsBuilderElement.Add("bSearchable", "false");
+                    }
                     string aTargets = String.Format("[{0}]", element.Index);
                     jsBuilderElement.Add("aTargets", aTargets);
                     stringBuilder.AppendFormat("{0},", jsBuilderElement.ToLiteralJSObject(true));
@@ -98,7 +106,10 @@ namespace Sushi.Helpers.Gridhelper
 
         public GridColumnComponent()
         {
-          
+            this.sorting = true;
+            this.filtering = true;
+            this.visible = true;
+
         }
     }
 }

@@ -1,0 +1,12 @@
+﻿<script type="text/javascript">
+	$('#Grid1').dataTable({ 
+		"bPaginate" : true, 
+		"bFilter" : false, 
+		"bServerSide" : true, 
+		"sAjaxSource" : '/StringAction', 
+		"aoColumnDefs" : [
+		{ "bSortable" : false, "aTargets" : [0]},
+		{ "bSortable" : false, "aTargets" : [1]}], 
+		"sDom" : "<'row'<'span3'l><'span6'f>r>t<'row'<'span3'i><'span6'p>>"
+	});
+</script>

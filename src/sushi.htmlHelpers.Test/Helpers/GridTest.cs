@@ -212,5 +212,76 @@ namespace sushi.htmlHelpers.Test.Helpers
         }
         #endregion
 
+        #region Sorting columns
+        [Test]
+        public void TestSetGridDisableSortingOneColumn()
+        {
+            FakeHtmlHelper.CreateStronglyTypedFakeViewDataDictionary(ModelFactories.GetPeople20Collection());
+            var htmlHelper = FakeHtmlHelper.CreateStronglyTypedHtmlHelperWithCollection();
+            var execution = SushiExtension.Sushi(htmlHelper).Grid(x => x)
+                    .Bind()
+                    .Columns(options => options.ColumnSortable(0, false))
+                    .Binding(binding => binding.Setup("/StringAction"))
+                    .ToHtmlString();
+            var expectedtable = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestDefaultGridRemoteBinding);
+            Assert.AreEqual(expectedtable, execution);
+            var resultObtained = SushiExtension.Sushi(htmlHelper).ScriptManager().ToString();
+            var resultExpected = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestGridSortingOffOneColumn);
+            Assert.AreEqual(resultExpected, resultObtained);
+        }
+
+        [Test]
+        public void TestSetGridDisableSortingMultipleColumns()
+        {
+            FakeHtmlHelper.CreateStronglyTypedFakeViewDataDictionary(ModelFactories.GetPeople20Collection());
+            var htmlHelper = FakeHtmlHelper.CreateStronglyTypedHtmlHelperWithCollection();
+            var execution = SushiExtension.Sushi(htmlHelper).Grid(x => x)
+                    .Bind()
+                    .Columns(options => options.ColumnSortable(0, false).ColumnSortable(1,false))
+                    .Binding(binding => binding.Setup("/StringAction"))
+                    .ToHtmlString();
+            var expectedtable = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestDefaultGridRemoteBinding);
+            Assert.AreEqual(expectedtable, execution);
+            var resultObtained = SushiExtension.Sushi(htmlHelper).ScriptManager().ToString();
+            var resultExpected = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestGridSortingOffMultipleColumns);
+            Assert.AreEqual(resultExpected, resultObtained);
+        }
+        #endregion
+
+        #region Filtering columns
+        [Test]
+        public void TestSetGridDisableFilteringOneColumn()
+        {
+            FakeHtmlHelper.CreateStronglyTypedFakeViewDataDictionary(ModelFactories.GetPeople20Collection());
+            var htmlHelper = FakeHtmlHelper.CreateStronglyTypedHtmlHelperWithCollection();
+            var execution = SushiExtension.Sushi(htmlHelper).Grid(x => x)
+                    .Bind()
+                    .Columns(options => options.ColumnFilterable(0, false))
+                    .Binding(binding => binding.Setup("/StringAction"))
+                    .ToHtmlString();
+            var expectedtable = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestDefaultGridRemoteBinding);
+            Assert.AreEqual(expectedtable, execution);
+            var resultObtained = SushiExtension.Sushi(htmlHelper).ScriptManager().ToString();
+            var resultExpected = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestGridFilteringOffOneColumn);
+            Assert.AreEqual(resultExpected, resultObtained);
+        }
+
+        [Test]
+        public void TestSetGridDisableFilteringMultipleColumns()
+        {
+            FakeHtmlHelper.CreateStronglyTypedFakeViewDataDictionary(ModelFactories.GetPeople20Collection());
+            var htmlHelper = FakeHtmlHelper.CreateStronglyTypedHtmlHelperWithCollection();
+            var execution = SushiExtension.Sushi(htmlHelper).Grid(x => x)
+                    .Bind()
+                    .Columns(options => options.ColumnFilterable(0, false).ColumnFilterable(1,false))
+                    .Binding(binding => binding.Setup("/StringAction"))
+                    .ToHtmlString();
+            var expectedtable = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestDefaultGridRemoteBinding);
+            Assert.AreEqual(expectedtable, execution);
+            var resultObtained = SushiExtension.Sushi(htmlHelper).ScriptManager().ToString();
+            var resultExpected = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestGridFilteringOffMultipleColumns);
+            Assert.AreEqual(resultExpected, resultObtained);
+        }
+        #endregion
     }
 }

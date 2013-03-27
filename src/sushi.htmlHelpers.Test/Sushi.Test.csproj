@@ -86,6 +86,8 @@
     <Content Include="HtmlStrings\TestDefaultGridJS.txt" />
     <Content Include="HtmlStrings\TestDefaultGridRemoteBinding.txt" />
     <Content Include="HtmlStrings\TestGridFilteringOff.txt" />
+    <Content Include="HtmlStrings\TestGridFilteringOffMultipleColumns.txt" />
+    <Content Include="HtmlStrings\TestGridFilteringOffOneColumn.txt" />
     <Content Include="HtmlStrings\TestGridFilteringOn.txt" />
     <Content Include="HtmlStrings\TestGridHiddingOneColumn.txt" />
     <Content Include="HtmlStrings\TestGridHiddingTwoColumns.txt" />
@@ -93,6 +95,8 @@
     <Content Include="HtmlStrings\TestGridSettedPaginationControls.txt" />
     <Content Include="HtmlStrings\TestGridSettedPaginationOff.txt" />
     <Content Include="HtmlStrings\TestGridSettedRemoteBinding.txt" />
+    <Content Include="HtmlStrings\TestGridSortingOffMultipleColumns.txt" />
+    <Content Include="HtmlStrings\TestGridSortingOffOneColumn.txt" />
     <Content Include="HtmlStrings\TestSecondGrid10.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
