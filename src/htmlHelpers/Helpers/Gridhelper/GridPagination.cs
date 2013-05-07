@@ -36,9 +36,6 @@ namespace Sushi.Helpers.Gridhelper
         public GridPagination()
         {
             this.Component = new GridPaginationComponent();
-            this.Component.IsPaginable = true;
-            this.Component.CanDisplayPaginationOptions = false;
-            this.Component.RowsPerPage = 10;
         }
 
         public void ToJS(JSBuilder js)
@@ -47,16 +44,10 @@ namespace Sushi.Helpers.Gridhelper
             if (this.Component.IsPaginable)
             {
                 js.Add("bPaginate", "true");
-                if (this.Component.CanDisplayPaginationOptions)
+                if (!this.Component.CanDisplayPaginationOptions)
                 {
-                    js.Add("bLengthChange", "true");
-                    
-                    //sPaginationType
+                    js.Add("bLengthChange", "false");
                 }
-                //else
-                //{
-                //    js.Add("bLengthChange", "false");
-                //}
                 if (this.Component.RowsPerPage != 10)
                 {
                     js.Add("iDisplayLength", this.Component.RowsPerPage.ToString());
@@ -75,5 +66,12 @@ namespace Sushi.Helpers.Gridhelper
         public Boolean IsPaginable { get; set; }
         public Boolean CanDisplayPaginationOptions { get; set; }
         public int RowsPerPage { get; set; }
+
+        public GridPaginationComponent()
+        {
+            IsPaginable = true;
+            CanDisplayPaginationOptions = true;
+            RowsPerPage = 10;
+        }
     }
 }

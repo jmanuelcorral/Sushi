@@ -3,6 +3,18 @@
 		"bPaginate" : true, 
 		"iDisplayLength" : 20, 
 		"bFilter" : false, 
+		"oLanguage" : { 
+			"sProcessing" : "Espere por favor...", 
+			"sZeroRecords" : "No existen registros en este momento.", 
+			"sInfo" : "Listando desde _START_ hasta _END_ de un total de _TOTAL_", 
+			"sInfoEmpty" : "Registros desde el 0 al 0 de un total de 0", 
+			"sInfoFiltered" : "(Filtrado de un total de _MAX_ )", 
+			"sInfoPostFix" : "", 
+			"sSearch" : "Búsqueda:", 
+			"sUrl" : "", "sLengthMenu" : 
+			"Mostrar <select><option value='10'>10</option><option value='20'>20</option><option value='50'>50</option><option value='100'>100</option><option value='-1'>Todos</option></select> registros", 
+			"oPaginate" : { "sFirst" : "&lt;&lt;", "sLast" : "&gt;&gt;", "sNext" : "&gt;", "sPrevious" : "&lt;"}
+		}, 
 		"sDom" : "<'row'<'span3'l><'span6'f>r>t<'row'<'span3'i><'span6'p>>"
 	});
 </script>

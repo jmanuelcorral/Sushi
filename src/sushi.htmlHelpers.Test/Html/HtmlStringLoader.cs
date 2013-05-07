@@ -13,6 +13,7 @@ namespace sushi.htmlHelpers.Test.Html
         TestSecondGrid10,
         TestDefaultJS,
         TestSettedGridPagingControls,
+        TestGridSettedPaginationControlsOff,
         TestSetted20RecordsPerPage,
         TestGridSettedPaginationOff,
         TestGridFilteringOn,
@@ -44,6 +45,8 @@ namespace sushi.htmlHelpers.Test.Html
                         return "TestDefaultGridJS.txt";
                     case TextLoad.TestSettedGridPagingControls:
                         return "TestGridSettedPaginationControls.txt";
+                    case TextLoad.TestGridSettedPaginationControlsOff:
+                        return "TestGridSettedPaginationControlsOff.txt";
                     case TextLoad.TestSetted20RecordsPerPage:
                         return "TestGridSetted20RecordsPerPage.txt";
                     case TextLoad.TestGridSettedPaginationOff:

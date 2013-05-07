@@ -71,8 +71,9 @@ namespace sushi.htmlHelpers.Test.Helpers
             var expectedtable = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestDefaultGrid20);
             Assert.AreEqual(expectedtable, execution);
             var resultObtained = SushiExtension.Sushi(htmlHelper).ScriptManager().ToString();
-            var resultExpected = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestDefaultJS);
+            var resultExpected = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestGridSettedPaginationControlsOff);
             Assert.AreEqual(resultExpected, resultObtained);
+
         }
 
         [Test]
@@ -280,6 +281,23 @@ namespace sushi.htmlHelpers.Test.Helpers
             Assert.AreEqual(expectedtable, execution);
             var resultObtained = SushiExtension.Sushi(htmlHelper).ScriptManager().ToString();
             var resultExpected = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestGridFilteringOffMultipleColumns);
+            Assert.AreEqual(resultExpected, resultObtained);
+        }
+        #endregion
+
+        #region DataAnnotation DisplayName
+        [Test]
+        public void TestGridDataAnnotations()
+        {
+            FakeHtmlHelper.CreateStronglyTypedFakeViewDataDictionary(ModelFactories.GetPeople20Collection());
+            var htmlHelper = FakeHtmlHelper.CreateStronglyTypedHtmlHelperWithCollection();
+            var execution = SushiExtension.Sushi(htmlHelper).Grid(x => x)
+                    .Bind()
+                    .ToHtmlString();
+            var expectedtable = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestDefaultGrid20);
+            Assert.AreEqual(expectedtable, execution);
+            var resultObtained = SushiExtension.Sushi(htmlHelper).ScriptManager().ToString();
+            var resultExpected = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestDefaultJS);
             Assert.AreEqual(resultExpected, resultObtained);
         }
         #endregion

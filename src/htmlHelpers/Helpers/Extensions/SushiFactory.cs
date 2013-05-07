@@ -221,14 +221,14 @@ namespace Sushi.Helpers.Extensions
         /// Html Helper that generates a Html Table
         /// </summary>
         /// <returns></returns>
-        public Grid<TProperty> Grid<TProperty>(Expression<Func<TModel, TProperty>> expression) where TProperty:IList
+        public Grid<TProperty> Grid<TProperty>(Expression<Func<TModel, TProperty>> expression) where TProperty : IList
         {
             ModelMetadata modelMetadata = ModelMetadata.FromLambdaExpression(expression, new ViewDataDictionary<TModel>(this.viewContext.ViewData));
-            var grd = new Grid<TProperty>(this.viewContext);
+            var modelMetadata2 = ModelMetadataProviders.Current.GetMetadataForType(null, modelMetadata.Model.GetType());
+            var grd = new Grid<TProperty>(this.viewContext, modelMetadata);
+            
             return grd;
         }
-
-        
 
         /// <summary>
         /// Html Helper that generates a NavBar 

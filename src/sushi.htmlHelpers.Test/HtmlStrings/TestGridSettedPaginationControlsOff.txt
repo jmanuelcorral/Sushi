@@ -1,6 +1,7 @@
 ﻿<script type="text/javascript">
 	$('#Grid1').dataTable({ 
-		"bPaginate" : false, 
+		"bPaginate" : true, 
+		"bLengthChange" : false, 
 		"bFilter" : false, 
 		"oLanguage" : { 
 			"sProcessing" : "Espere por favor...", 

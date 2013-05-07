@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Web.Mvc;
 using Sushi.Helpers.Enums;
 using Sushi.Helpers.Html;
 
@@ -21,6 +22,8 @@ namespace Sushi.Helpers.Gridhelper
         public GridSearch Search { get; set; }
         public GridBinding Binding { get; set; }
         public GridColumnOptions Columns { get; set; }
+        public GridResources Resources { get; set; }
+        public ModelMetadata Metadata { get; set; }
         #endregion
        
     }

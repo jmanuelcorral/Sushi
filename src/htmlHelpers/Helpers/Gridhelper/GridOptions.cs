@@ -9,28 +9,33 @@ namespace Sushi.Helpers.Gridhelper
         private GridOptionsComponent Component;
 
         
-        public GridOptions(GridOptions grd)
+        public GridOptions CanCacheViewedPages(Boolean Cache)
         {
-        
+            this.Component.cacheViewedPages = Cache;
+            return this;
         }
         
         public GridOptions()
         {
+            Component = new GridOptionsComponent();
         }
 
         public void ToJS(JSBuilder js)
         {
-            
+            if (this.Component.cacheViewedPages)
+            {
+                js.Add("bStateSave", "true");
+            }
         } 
     }
 
     internal class GridOptionsComponent
     {
-        public Boolean isPaginable { get; set; }
-        public Boolean isSortable { get; set; }
-        public Boolean canDisplaySearch { get; set; }
-        public Boolean canDisplayPaginationOptions { get; set; }
-        public int rowsPerPage { get; set; }
+        internal Boolean cacheViewedPages { get; set; }
+        public GridOptionsComponent()
+        {
+            this.cacheViewedPages = false;
+        }
     }
 
 }

@@ -40,6 +40,7 @@
       <HintPath>..\packages\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -68,6 +69,7 @@
     <Compile Include="Html\HtmlStringLoader.cs" />
     <Compile Include="Model\ModelFactories.cs" />
     <Compile Include="Model\Person.cs" />
+    <Compile Include="Model\PersonDataAnnotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
@@ -92,6 +94,7 @@
     <Content Include="HtmlStrings\TestGridHiddingOneColumn.txt" />
     <Content Include="HtmlStrings\TestGridHiddingTwoColumns.txt" />
     <Content Include="HtmlStrings\TestGridSetted20RecordsPerPage.txt" />
+    <Content Include="HtmlStrings\TestGridSettedPaginationControlsOff.txt" />
     <Content Include="HtmlStrings\TestGridSettedPaginationControls.txt" />
     <Content Include="HtmlStrings\TestGridSettedPaginationOff.txt" />
     <Content Include="HtmlStrings\TestGridSettedRemoteBinding.txt" />

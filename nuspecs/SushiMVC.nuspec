@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>SushiMVC</id>
-        <version>1.8.19</version>
+        <version>1.8.22</version>
         <title>Sushi Library</title>
         <authors>jmanuelcorral</authors>
         <owners>jmanuelcorral</owners>
@@ -14,9 +14,9 @@
 
 Sushi uses BootStrap, that means the responsive and elegant user interface is guaranteed.</description>
         <summary />
-        <releaseNotes>Version 1.8.19
+        <releaseNotes>Version 1.8.22
 ----------------------
-Added Font Awesome
+BUG FIX RESOURCES
 
 Available Helpers:
 ------------------------
@@ -58,6 +58,7 @@ http://jmanuelcorral.github.com/Sushi/</releaseNotes>
         <file src="..\src\htmlHelpers\JS\jquery.dataTables.min.js" target="content\Scripts\jquery.dataTables.min.js" />
         <file src="..\src\htmlHelpers\JS\sushi.js" target="content\Scripts\sushi.js" />
         <file src="..\src\htmlHelpers\JS\sushi.min.js" target="content\Scripts\sushi.min.js" />
+        <file src="..\build\Release\es-ES\Sushi.resources.dll" target="lib\es-ES\Sushi.resources.dll" />
         <file src="..\build\Release\Sushi.dll" target="lib\Sushi.dll" />
     </files>
 </package>
