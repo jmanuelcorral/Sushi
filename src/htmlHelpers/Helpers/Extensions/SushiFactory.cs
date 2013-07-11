@@ -322,11 +322,6 @@ namespace Sushi.Helpers.Extensions
         /// </summary>
         /// <param name="id">Id property of your html client control</param>
         /// <returns></returns>
-        /// <summary>
-        /// Helper that generates a new SideBar
-        /// </summary>
-        /// <param name="id">Id property of your html client control</param>
-        /// <returns></returns>
         public SideBar SideBar()
         {
             var sd = new SideBar(viewContext);
