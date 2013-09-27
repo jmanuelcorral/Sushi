@@ -2,9 +2,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AutoPoco;
+using AutoPoco.DataSources;
+using AutoPoco.Engine;
 
 namespace sushi.htmlHelpers.Test.Model
 {
+
+    public class RegisterDateSource : DatasourceBase<DateTime>
+    {
+        private readonly DateTime min;
+        private readonly DateTime max;
+        private readonly Random random = new Random();
+
+        public RegisterDateSource(DateTime max)
+            : this(DateTime.Now.AddYears(-10), max)
+        {
+        }
+
+        public RegisterDateSource(DateTime min, DateTime max)
+        {
+            this.min = min;
+            this.max = max;
+        }
+
+        public override DateTime Next(IGenerationSession session)
+        {
+            var range = new TimeSpan(max.Ticks - min.Ticks);
+            var rnd = new Random();
+            var randTimeSpan = new TimeSpan((long)(rnd.NextDouble() * range.Ticks));
+            return min + randTimeSpan;
+        }
+    }
+
     public static class ModelFactories
     {
         public static List<Person> GetPeople10Collection()
@@ -48,6 +78,35 @@ namespace sushi.htmlHelpers.Test.Model
             peoplelist.Add(new Person() { Id = 19, Name = "Charlie", FirstSurname = "Withing", SecondSurname = "Menganito", BornDate = DateTime.Parse("12/08/1975 0:00:00"), Register = DateTime.Parse("17/11/2012 14:06:38") });
             peoplelist.Add(new Person() { Id = 20, Name = "Henry", FirstSurname = "Mustafá", SecondSurname = "Mojame", BornDate = DateTime.Parse("19/05/2001 0:00:00"), Register = DateTime.Parse("17/11/2012 14:06:38") });
             return peoplelist;
+        }
+
+        public static List<Person> GetPeople100Collection()
+        {
+            // Perform factory set up (once for entire test run)
+            var factory = AutoPocoContainer.Configure(x =>
+            {
+                x.Conventions(c =>
+                {
+                    c.UseDefaultConventions();
+                });
+                x.AddFromAssemblyContainingType<Person>();
+                x.Include<Person>()
+                    .Setup(c => c.BornDate).Use<DateOfBirthSource>()
+                    .Setup(c=> c.Register).Use<RegisterDateSource>(DateTime.Now)
+                    .Setup(c => c.Name).Use<FirstNameSource>()
+                    .Setup(c => c.FirstSurname).Use<LastNameSource>()
+                    .Setup(c => c.SecondSurname).Use<LastNameSource>()
+                    .Setup(c => c.Id).Use<IntegerIdSource>();
+            });
+
+
+            // Generate one of these per test (factory will be a static variable most likely)
+            IGenerationSession session = factory.CreateSession();
+         
+            // Get a collection of persons
+            List<Person> people = (List<Person>)session.List<Person>(100).Get();
+            return people;
+
         }
     }
 }

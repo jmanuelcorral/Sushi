@@ -45,6 +45,16 @@ namespace sushi.htmlHelpers.Test.Helpers
         }
 
         [Test]
+        public void TestDefault100RecordsModel()
+        {
+            FakeHtmlHelper.CreateStronglyTypedFakeViewDataDictionary(ModelFactories.GetPeople100Collection());
+            var htmlHelper = FakeHtmlHelper.CreateStronglyTypedHtmlHelperWithCollection();
+            var resultObtained = SushiExtension.Sushi(htmlHelper).Grid(x => x).Bind().ToHtmlString();
+            var resultExpected = HtmlStringLoader.GetHtmlStringResource(TextLoad.TestDefaultGrid20);
+            Assert.AreEqual(resultExpected, resultObtained);
+        }
+
+        [Test]
         public void TestJavascriptIsLoaded()
         {
             FakeHtmlHelper.CreateStronglyTypedFakeViewDataDictionary(ModelFactories.GetPeople20Collection());
