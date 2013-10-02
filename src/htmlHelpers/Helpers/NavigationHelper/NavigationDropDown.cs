@@ -13,6 +13,7 @@ namespace Sushi.Helpers.NavigationHelper
     {
         
         #region CSS Classes
+        
         #endregion
 
         #region Builder Properties
@@ -63,6 +64,8 @@ namespace Sushi.Helpers.NavigationHelper
         }
 
 
+
+
         #endregion
   
         #region Constructor
@@ -105,7 +108,7 @@ namespace Sushi.Helpers.NavigationHelper
         private String CreateSushiNavigationDropDownItem()
         {
             TagBuilder uBuilder = new TagBuilder("ul");
-            uBuilder.AddCssClass("nav");
+            uBuilder.AddCssClass("nav navbar-nav");
             var liBuilder = new TagBuilder("li");
             liBuilder.AddCssClass("dropdown");
             TagBuilder aBuilder = new TagBuilder("a");

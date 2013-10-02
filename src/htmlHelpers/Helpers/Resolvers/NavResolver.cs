@@ -10,7 +10,7 @@ namespace Sushi.Helpers.Resolvers
             switch (type)
             {
                     case NavType.menu:
-                    return "nav";
+                    return "nav navbar-nav";
                     case NavType.pill:
                     return "nav nav-pills";
                     case NavType.tab:
@@ -22,7 +22,7 @@ namespace Sushi.Helpers.Resolvers
                     case NavType.navlist:
                     return "nav nav-list";
             }
-            return "nav";
+            return "nav navbar-nav";
         }
     }
 }

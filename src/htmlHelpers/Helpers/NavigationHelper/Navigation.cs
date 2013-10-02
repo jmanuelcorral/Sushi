@@ -57,6 +57,13 @@ namespace Sushi.Helpers.NavigationHelper
             return this;
         }
 
+        public Navigation AddDropDownMenu(NavigationDropDown DropDown)
+        {
+            DropDown.ViewContext = this.ViewContext;
+            this.ContainerElements.Add(DropDown);
+            return this;
+        }
+
         public Navigation AddSeparator()
         {
             this.ContainerElements.Add(new SeparatorHelper.Separator());

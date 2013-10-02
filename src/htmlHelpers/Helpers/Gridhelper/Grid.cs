@@ -179,7 +179,7 @@ namespace Sushi.Helpers.Gridhelper
             this.Component.Resources.ToJS(JS);
             
             //if (this.Component.Size)
-            JS.Add("sDom", "\"<'row'<'span3'l><'span6'f>r>t<'row'<'span3'i><'span6'p>>\"");
+            JS.Add("sDom", "\"<'row'<'col-md-3'l><'col-md-6'f>r>t<'row'<'col-md-3'i><'col-md-6'p>>\"");
             String basescript = "$('#" + this.Component.HtmlProperties.Id + "').dataTable(" +  JS.ToLiteralJSObject(true) +");";
             ((GridScripts)this.Component.Scripts).AddScript(basescript);
             var scripts = JSResolver.JSStack(ViewContext);

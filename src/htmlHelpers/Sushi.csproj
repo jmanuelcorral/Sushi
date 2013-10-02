@@ -162,19 +162,55 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="css\less\alerts.less" />
+    <None Include="css\less\badges.less" />
+    <None Include="css\less\bootstrap.less" />
+    <None Include="css\less\bootswatch.less" />
+    <None Include="css\less\breadcrumbs.less" />
+    <None Include="css\less\button-groups.less" />
+    <None Include="css\less\buttons.less" />
+    <None Include="css\less\carousel.less" />
+    <None Include="css\less\close.less" />
+    <None Include="css\less\code.less" />
+    <None Include="css\less\component-animations.less" />
+    <None Include="css\less\dropdowns.less" />
+    <None Include="css\less\forms.less" />
+    <None Include="css\less\glyphicons.less" />
+    <None Include="css\less\grid.less" />
+    <None Include="css\less\input-groups.less" />
+    <None Include="css\less\jumbotron.less" />
+    <None Include="css\less\labels.less" />
+    <None Include="css\less\list-group.less" />
+    <None Include="css\less\media.less" />
+    <None Include="css\less\mixins.less" />
+    <None Include="css\less\modals.less" />
+    <None Include="css\less\navbar.less" />
+    <None Include="css\less\navs.less" />
+    <None Include="css\less\normalize.less" />
+    <None Include="css\less\pager.less" />
+    <None Include="css\less\pagination.less" />
+    <None Include="css\less\panels.less" />
+    <None Include="css\less\popovers.less" />
+    <None Include="css\less\print.less" />
+    <None Include="css\less\progress-bars.less" />
+    <None Include="css\less\responsive-utilities.less" />
+    <None Include="css\less\scaffolding.less" />
+    <None Include="css\less\tables.less" />
+    <None Include="css\less\theme.less" />
+    <None Include="css\less\thumbnails.less" />
+    <None Include="css\less\tooltip.less" />
+    <None Include="css\less\type.less" />
+    <None Include="css\less\utilities.less" />
+    <None Include="css\less\variables.less" />
+    <None Include="css\less\wells.less" />
     <None Include="fonts\fontawesome-webfont.eot" />
     <None Include="fonts\fontawesome-webfont.ttf" />
     <None Include="fonts\fontawesome-webfont.woff" />
     <None Include="fonts\FontAwesome.otf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="css\bootstrap-responsive.css" />
-    <Content Include="css\bootstrap-responsive.min.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
-    <Content Include="css\font-awesome-ie7.min.css" />
-    <Content Include="css\font-awesome.css" />
-    <Content Include="css\font-awesome.min.css" />
     <Content Include="css\sushi.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="images\sort_asc.png" />

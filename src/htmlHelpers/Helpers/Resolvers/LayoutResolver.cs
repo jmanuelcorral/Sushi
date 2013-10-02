@@ -12,9 +12,9 @@ namespace Sushi.Helpers.Resolvers
                 case LayoutType.Fixed:
                     return "fixed";
                 case LayoutType.Fluid:
-                    return "row-fluid";
+                    return "row";
             }
-            return "fixed";
+            return "row";
         }
 
         public static String ResolveContainerLayout(ContainerLayoutType layoutType)
@@ -24,9 +24,9 @@ namespace Sushi.Helpers.Resolvers
                 case ContainerLayoutType.Fixed:
                     return "container-fixed";
                 case ContainerLayoutType.Fluid:
-                    return "container-fluid";
+                    return "container";
             }
-            return "container-fluid";
+            return "container";
         }
     }
 }

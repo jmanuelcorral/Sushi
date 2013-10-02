@@ -17,7 +17,7 @@ namespace sushi.htmlHelpers.Test.Helpers
         {
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
             var comparer = SushiExtension.Sushi(htmlHelper).Menu().ToHtmlString();
-            Assert.AreEqual(comparer, "<div class=\"navbar\"><div class=\"navbar-inner\"></div></div>");
+            Assert.AreEqual(comparer, "<div class=\"navbar\"><div class=\"navbar-header\"></div></div>");
         }
 
         [Test]
@@ -25,7 +25,7 @@ namespace sushi.htmlHelpers.Test.Helpers
         {
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
             var comparer = SushiExtension.Sushi(htmlHelper).Menu().AddNavigation(new Navigation("menu").AddLink(new Link("testlink"))).ToHtmlString();
-            Assert.AreEqual(comparer, "<div class=\"navbar\"><div class=\"navbar-inner\"><ul class=\"nav\" id=\"Navigation1\"><li><a href=\"\" id=\"testlink\"></a></li></ul></div></div>");
+            Assert.AreEqual(comparer, "<div class=\"navbar\"><div class=\"navbar-header\"><ul class=\"nav\" id=\"Navigation1\"><li><a href=\"\" id=\"testlink\"></a></li></ul></div></div>");
         }
 
         [Test]
@@ -40,7 +40,7 @@ namespace sushi.htmlHelpers.Test.Helpers
                 ).ToHtmlString();
 
             var resultExpected = "<div class=\"navbar\">"+
-                                 "<div class=\"navbar-inner\">"+
+                                 "<div class=\"navbar-header\">"+
                                  "<ul class=\"nav\" id=\"Navigation1\">"+
                                  "<li><a href=\"\" id=\"testlink\"></a></li>"+
                                  "<li><a href=\"\" id=\"testlink2\"></a></li>"+
@@ -55,7 +55,7 @@ namespace sushi.htmlHelpers.Test.Helpers
         {
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
             var comparer = SushiExtension.Sushi(htmlHelper).Menu().SetPosition(MenuPosition.FixedTop).ToHtmlString();
-            var resultExpected = "<div class=\"navbar navbar-fixed-top\"><div class=\"navbar-inner\"></div></div>";
+            var resultExpected = "<div class=\"navbar navbar-fixed-top\"><div class=\"navbar-header\"></div></div>";
             Assert.AreEqual(comparer, resultExpected);
         }
 
@@ -64,29 +64,29 @@ namespace sushi.htmlHelpers.Test.Helpers
         {
             HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
             var comparer = SushiExtension.Sushi(htmlHelper).Menu().SetPosition(MenuPosition.FixedBottom).ToHtmlString();
-            var resultExpected = "<div class=\"navbar navbar-fixed-bottom\"><div class=\"navbar-inner\"></div></div>";
+            var resultExpected = "<div class=\"navbar navbar-fixed-bottom\"><div class=\"navbar-header\"></div></div>";
             Assert.AreEqual(comparer, resultExpected);
         }
 
-        [Test]
-        public void TestAddSearchForm()
-        {
-            HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
-            var comparer = SushiExtension.Sushi(htmlHelper).Menu().AddSearchForm(new Form()).ToHtmlString();
-            var resultExpected = "<div class=\"navbar\"><div class=\"navbar-inner\"><form class=\"navbar-search\" id=\"Form1\"></form></div></div>";
-            Assert.AreEqual(comparer, resultExpected);
-        }
+        //[Test]
+        //public void TestAddSearchForm()
+        //{
+        //    HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
+        //    var comparer = SushiExtension.Sushi(htmlHelper).Menu().AddSearchForm(new Form()).ToHtmlString();
+        //    var resultExpected = "<div class=\"navbar\"><div class=\"navbar-header\"><form class=\"navbar-search\" id=\"Form1\"></form></div></div>";
+        //    Assert.AreEqual(comparer, resultExpected);
+        //}
 
-        [Test]
-        public void TestAddNormalForm()
-        {
-            HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
-            var comparer = SushiExtension.Sushi(htmlHelper).Menu().AddNavForm(new Form()).ToHtmlString();
-            var resultExpected = "<div class=\"navbar\"><div class=\"navbar-inner\">" +
-                                 "<form class=\"navbar-form\" id=\"Form1\"></form>" +
-                                 "</div></div>";
-            Assert.AreEqual(comparer, resultExpected);
-        }
+        //[Test]
+        //public void TestAddNormalForm()
+        //{
+        //    HtmlHelper htmlHelper = FakeHtmlHelper.CreateFakeHtmlHelper(FakeHtmlHelper.CreateFakeViewDataDictionary());
+        //    var comparer = SushiExtension.Sushi(htmlHelper).Menu().AddNavForm(new Form()).ToHtmlString();
+        //    var resultExpected = "<div class=\"navbar\"><div class=\"navbar-header\">" +
+        //                         "<form class=\"navbar-form\" id=\"Form1\"></form>" +
+        //                         "</div></div>";
+        //    Assert.AreEqual(comparer, resultExpected);
+        //}
 
         [Test]
         public void TestAddDropDownMenu()
@@ -99,7 +99,7 @@ namespace sushi.htmlHelpers.Test.Helpers
                         .AddLink(new Link().SetCaption("New").SetAction("#"))).ToHtmlString();
 
             var resultExpected = "<div class=\"navbar\">"+
-                                 "<div class=\"navbar-inner\">"+
+                                 "<div class=\"navbar-header\">"+
                                  "<ul class=\"nav\">"+
                                  "<li class=\"dropdown\">" +
                                     "<a class=\"dropdown-toggle\" data-toggle=\"dropdown\">File<b class=\"caret\"></b></a>" +
@@ -123,7 +123,7 @@ namespace sushi.htmlHelpers.Test.Helpers
                         .AddLink(new Link().SetCaption("New").SetAction("#"))).ToHtmlString();
 
             var resultExpected = "<div class=\"navbar\">" +
-                                 "<div class=\"navbar-inner\">" +
+                                 "<div class=\"navbar-header\">" +
                                  "<ul class=\"nav\">" +
                                  "<li class=\"dropdown\">" +
                                     "<a class=\"dropdown-toggle\" data-toggle=\"dropdown\"><i class=\"icon-file\"></i>File<b class=\"caret\"></b></a>" +

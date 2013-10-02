@@ -65,7 +65,7 @@ namespace Sushi.Helpers.NavigationHelper
         {
             var tagBuilder = new TagBuilder("li");
             tagBuilder.MergeAttributes(this.Component.HtmlProperties.HtmlAttributes);
-            tagBuilder.AddCssClass("nav-header");
+            tagBuilder.AddCssClass("dropdown-header");
             tagBuilder.InnerHtml = this.Component.HtmlProperties.InnerHtml;
             return tagBuilder.ToString(TagRenderMode.Normal);
         }
