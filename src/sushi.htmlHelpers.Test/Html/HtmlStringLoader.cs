@@ -25,7 +25,8 @@ namespace sushi.htmlHelpers.Test.Html
         TestGridSortingOffOneColumn,
         TestGridSortingOffMultipleColumns,
         TestGridFilteringOffOneColumn,
-        TestGridFilteringOffMultipleColumns
+        TestGridFilteringOffMultipleColumns,
+        TestDefaultGrid100
     }
 
     public static class HtmlStringLoader
@@ -39,6 +40,8 @@ namespace sushi.htmlHelpers.Test.Html
                         return "TestDefaultGrid10.txt";
                     case TextLoad.TestDefaultGrid20:
                         return "TestDefaultGrid20.txt";
+                    case TextLoad.TestDefaultGrid100:
+                        return "TestDefaultGrid100.txt";
                     case TextLoad.TestSecondGrid10:
                         return "TestSecondGrid10.txt";
                     case TextLoad.TestDefaultJS:

@@ -20,6 +20,6 @@
 			"Mostrar <select><option value='10'>10</option><option value='20'>20</option><option value='50'>50</option><option value='100'>100</option><option value='-1'>Todos</option></select> registros", 
 			"oPaginate" : { "sFirst" : "&lt;&lt;", "sLast" : "&gt;&gt;", "sNext" : "&gt;", "sPrevious" : "&lt;"}
 		}, 
-		"sDom" : "<'row'<'span3'l><'span6'f>r>t<'row'<'span3'i><'span6'p>>"
+		"sDom" : "<'row'<'col-md-3'l><'col-md-6'f>r>t<'row'<'col-md-3'i><'col-md-6'p>>"
 	});
 </script>

@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="HtmlStrings\TestDefaultGrid10.txt" />
+    <Content Include="HtmlStrings\TestDefaultGrid100.txt" />
     <Content Include="HtmlStrings\TestDefaultGrid20.txt" />
     <Content Include="HtmlStrings\TestDefaultGridJS.txt" />
     <Content Include="HtmlStrings\TestDefaultGridRemoteBinding.txt" />
